@@ -19,7 +19,7 @@ const HeroSection = () => {
 
       <div className="hidden lg:block absolute h-100 w-100 right-1">
         <Image
-          src="/mascot_03.png"
+          src="/mascots/mascot_waving.png"
           alt="Inkspire Mascot"
           fill
           className="object-contain"
@@ -27,7 +27,7 @@ const HeroSection = () => {
       </div>
       <div className="relative mb-5 flex min-w-full justify-center items-center lg:hidden h-52 w-52 md:h-72 md:w-72 ">
         <Image
-          src="/mascot_03.png"
+          src="/mascots/mascot_thumbsUp.png"
           alt="Inkspire Mascot"
           fill
           className="object-contain"

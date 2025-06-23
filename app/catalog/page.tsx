@@ -4,22 +4,33 @@ import Header from "../components/Header";
 import CustomProductSection from "./CustomProductSection";
 
 const CatalogPage = () => {
+  // need static data for showing catalog
   const apparels = [
-    { id: 1, type: "apparels", title: "T-Shirts", image: "/t_shirts.jpg" },
-    { id: 2, type: "apparels", title: "Polos", image: "/polo.jpg" },
+    {
+      id: 1,
+      type: "apparels",
+      title: "T-Shirts",
+      image: "/apparels/t_shirts.jpg",
+    },
+    { id: 2, type: "apparels", title: "Polos", image: "/apparels/polo.jpg" },
     {
       id: 3,
       type: "apparels",
       title: "Full-Sleeves",
-      image: "/fullSleeve.jpg",
+      image: "/apparels/fullSleeve.jpg",
     },
     {
       id: 5,
       type: "apparels",
       title: "Varsity-Jackets",
-      image: "/varsity.jpg",
+      image: "/apparels/varsity.jpg",
     },
-    { id: 6, type: "apparels", title: "Hoodies", image: "/hoodie.jpg" },
+    {
+      id: 6,
+      type: "apparels",
+      title: "Hoodies",
+      image: "/apparels/hoodie.jpg",
+    },
   ];
   const drinkwares = [
     { id: 1, type: "drinkwares", title: "Bottles", image: "/mascot_02.png" },

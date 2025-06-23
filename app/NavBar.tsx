@@ -15,7 +15,7 @@ const NavBar = () => {
 
   const pathName = usePathname();
   const mainLinks = [
-    { label: "Catalog", href: "/catalogs" },
+    { label: "Catalog", href: "/catalog" },
     { label: "Design", href: "/design" },
     { label: "Gallery", href: "/gallery" },
     { label: "About", href: "/about" },
