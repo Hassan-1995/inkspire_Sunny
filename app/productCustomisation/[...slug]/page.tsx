@@ -17,7 +17,7 @@ const ProductCustomisation = async (props: ProductCustomisationProps) => {
     case "apparels":
       CustomComponent = ApparelPage;
       break;
-    case "mugs":
+    case "drinkwares":
       CustomComponent = DrinkwarePage;
       break;
     default:

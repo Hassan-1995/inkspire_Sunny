@@ -33,10 +33,25 @@ const CatalogPage = () => {
     },
   ];
   const drinkwares = [
-    { id: 1, type: "drinkwares", title: "Bottles", image: "/mascot_02.png" },
-    { id: 2, type: "drinkwares", title: "Mugs", image: "/mascot_02.png" },
-    { id: 3, type: "drinkwares", title: "Flasks", image: "/mascot_02.png" },
-    { id: 4, type: "drinkwares", title: "Tumblers", image: "/mascot_02.png" },
+    {
+      id: 1,
+      type: "drinkwares",
+      title: "Bottles",
+      image: "/drinkwares/Bottles.png",
+    },
+    { id: 2, type: "drinkwares", title: "Mugs", image: "/drinkwares/Mugs.png" },
+    {
+      id: 3,
+      type: "drinkwares",
+      title: "Jars",
+      image: "/drinkwares/Jars.png",
+    },
+    {
+      id: 4,
+      type: "drinkwares",
+      title: "Tumblers",
+      image: "/drinkwares/Tumblers.png",
+    },
   ];
   const bags = [
     { id: 1, type: "bags", title: "Tote Bags", image: "/mascot_02.png" },

@@ -116,28 +116,32 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <ProductWithImage
-          productImage={productFrontPath!}
-          uploadedImage={uploadedImagePrimary}
-          uploadedImagePosition={getImagePositionClass(catalogItem, "front")}
-          sizeClass={getImageSizeClass(
-            catalogItem,
-            "front",
-            uploadedImageSizePrimary as SizeOptions
-          )}
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="w-full aspect-[7/4] md:aspect-[7/8]">
+          <ProductWithImage
+            productImage={productFrontPath!}
+            uploadedImage={uploadedImagePrimary}
+            uploadedImagePosition={getImagePositionClass(catalogItem, "front")}
+            sizeClass={getImageSizeClass(
+              catalogItem,
+              "front",
+              uploadedImageSizePrimary as SizeOptions
+            )}
+          />
+        </div>
 
-        <ProductWithImage
-          productImage={productBackPath!}
-          uploadedImage={uploadedImagePrimary}
-          uploadedImagePosition={getImagePositionClass(catalogItem, "back")}
-          sizeClass={getImageSizeClass(
-            catalogItem,
-            "back",
-            uploadedImageSizeSecondary as SizeOptions
-          )}
-        />
+        <div className="w-full aspect-[7/4] md:aspect-[7/8]">
+          <ProductWithImage
+            productImage={productBackPath!}
+            uploadedImage={uploadedImagePrimary}
+            uploadedImagePosition={getImagePositionClass(catalogItem, "back")}
+            sizeClass={getImageSizeClass(
+              catalogItem,
+              "back",
+              uploadedImageSizeSecondary as SizeOptions
+            )}
+          />
+        </div>
       </div>
       <ColorSelector catalogItem={catalogItem} />
       <FrontSize />

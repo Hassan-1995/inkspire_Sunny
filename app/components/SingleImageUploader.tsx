@@ -66,7 +66,8 @@ const SingleImageUploader = ({ localStorageKey, onUpload, label }: Props) => {
       onDrop={handleDrop}
       onDragOver={(e) => e.preventDefault()}
       onClick={() => fileInputRef.current?.click()}
-      className="border-2 border-dashed w-full aspect-[7/4] md:aspect-[7/8] border-gray-400 rounded-md p-4 text-center cursor-pointer flex justify-center items-center"
+      // className="border-2 border-dashed w-full aspect-[7/4] md:aspect-[7/8] border-gray-400 rounded-md p-4 text-center cursor-pointer flex justify-center items-center"
+      className="border-2 border-dashed border-gray-400 rounded-md p-4 text-center cursor-pointer flex justify-center items-center w-full h-full"
     >
       <input
         ref={fileInputRef}
@@ -76,7 +77,8 @@ const SingleImageUploader = ({ localStorageKey, onUpload, label }: Props) => {
         hidden
       />
       {previewUrl ? (
-        <div className="w-full aspect-[7/4] relative">
+        // <div className="w-full aspect-[7/4] relative">
+        <div className="w-full h-full relative">
           <Image
             src={previewUrl}
             alt="Uploaded"

@@ -13,7 +13,7 @@ const ProductWithImage = ({
   sizeClass,
 }: ProductWithImageProps) => {
   return (
-    <div className="border-2 border-dashed w-full aspect-[7/4] md:aspect-[7/8] border-gray-400 rounded-md p-4 text-center cursor-pointer flex justify-center items-center relative">
+    <div className="relative w-full h-full border-2 border-dashed border-gray-400 rounded-md p-4 flex justify-center items-center">
       {productImage && (
         <Image
           src={productImage}
@@ -25,7 +25,9 @@ const ProductWithImage = ({
       )}
       {uploadedImage && (
         <div
-          className={`absolute border-2 border-purple-400 border-dashed ${sizeClass} ${uploadedImagePosition || ""}`}
+          className={`absolute border-2 border-dashed ${sizeClass} ${
+            uploadedImagePosition || ""
+          }`}
           style={{
             opacity: 0.9,
             filter: "blur(0px)",
