@@ -49,14 +49,14 @@ const CatalogPage = () => {
     {
       id: 4,
       type: "drinkwares",
-      title: "Tumblers",
-      image: "/drinkwares/Tumblers.png",
+      title: "Flasks",
+      image: "/drinkwares/Flasks.png",
     },
   ];
   const bags = [
-    { id: 1, type: "bags", title: "Tote Bags", image: "/mascot_02.png" },
+    { id: 1, type: "bags", title: "Tote-Bags", image: "/mascot_02.png" },
     { id: 2, type: "bags", title: "Backpacks", image: "/mascot_02.png" },
-    { id: 3, type: "bags", title: "Laptop Sleeves", image: "/mascot_02.png" },
+    { id: 3, type: "bags", title: "Laptop-Sleeves", image: "/mascot_02.png" },
     { id: 4, type: "bags", title: "Pouches", image: "/mascot_02.png" },
   ];
   const sports = [

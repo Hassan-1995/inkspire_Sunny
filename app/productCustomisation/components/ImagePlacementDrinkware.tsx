@@ -38,6 +38,7 @@ const ImagePlacementDrinkware = ({
         <DrinkwareWithImage
           productImage={productFrontPath!}
           uploadedImage={uploadedImagePrimary}
+          drinkware={catalogItem}
         />
       </div>
       <ColorSelector catalogItem={catalogItem} />
