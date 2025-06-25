@@ -10,8 +10,8 @@ type ProductCardMap = {
 const ProductCard = ({ items }: ProductCardMap) => {
   return (
     <Link
-      href={"/products/" + items.type + "/" + items.title}
-      onClick={() => localStorage.setItem("productType", items.title)}
+      href={"/productCustomisation/" + items.type + "/" + items.title}
+      onClick={() => localStorage.setItem("catalogItem", items.title)}
       className="group cursor-pointer aspect-[3/4] w-40 flex flex-col rounded-lg border border-stone-200 overflow-hidden"
     >
       <div className="w-full aspect-square relative shrink-0">
