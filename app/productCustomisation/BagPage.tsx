@@ -4,14 +4,13 @@ import ImageUploaderTwo from "./components/ImageUploaderTwo";
 import ImagePlacementTwo from "./components/ImagePlacementTwo";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import ImageUploaderOne from "./components/ImageUploaderOne";
 
-type ApparelPageProps = {
+type BagPageProps = {
   catalog: string;
   catalogItem: string;
 };
 
-const ApparelPage = ({ catalog, catalogItem }: ApparelPageProps) => {
+const BagPage = ({ catalog, catalogItem }: BagPageProps) => {
   const progress = useSelector(
     (state: RootState) => state.progressBar.progressBarValue
   );
@@ -20,10 +19,9 @@ const ApparelPage = ({ catalog, catalogItem }: ApparelPageProps) => {
       <h1>{catalog}</h1>
       <h1>{catalogItem}</h1>
       {progress === 1 && <ImageUploaderTwo />}
-      {/* {progress === 1 &&  <ImageUploaderOne />} */}
       {progress === 2 && <ImagePlacementTwo catalogItem={catalogItem} />}
     </div>
   );
 };
 
-export default ApparelPage;
+export default BagPage;

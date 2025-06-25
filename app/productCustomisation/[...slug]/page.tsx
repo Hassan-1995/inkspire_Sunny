@@ -15,6 +15,7 @@ const ProductCustomisation = async (props: ProductCustomisationProps) => {
   let CustomComponent;
   switch (catalog) {
     case "apparels":
+    case "bags":
       CustomComponent = ApparelPage;
       break;
     case "drinkwares":

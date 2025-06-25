@@ -71,18 +71,36 @@ const getImageSizeClass = (
 };
 
 const getImagePositionClass = (catalogItem: string, side: "front" | "back") => {
-  const isChest = ["Polos", "Varsity-Jackets"].includes(catalogItem);
-  if (side === "front") {
-    return isChest
-      ? "top-[35%] left-[60%] -translate-x-[60%] -translate-y-[35%]"
-      : "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
+  const chestItems = ["Polos", "Varsity-Jackets"];
+  const noChestItems = ["T-Shirts", "Full-Sleeves", "Hoodies"];
+  const bagItems = ["Tote-Bags"];
+
+  const isChest = chestItems.includes(catalogItem);
+  const isNoChest = noChestItems.includes(catalogItem);
+  const isBag = bagItems.includes(catalogItem);
+
+  // Bag logic (applies to both sides)
+  if (isBag) {
+    return "top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2";
   }
-  const isNoChest = ["Polos", "Varsity-Jackets", "T-Shirts"].includes(
-    catalogItem
-  );
-  return isNoChest
-    ? "top-[35%] left-[50%] -translate-x-[50%] -translate-y-[35%]"
-    : "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
+
+  // Chest logic on front
+  if (isChest && side === "front") {
+    return "top-[35%] left-[60%] -translate-x-[60%] -translate-y-[35%]";
+  }
+
+  // No-chest items on front
+  if (isNoChest && side === "front") {
+    return "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
+  }
+
+  // All back-side logic for noChest or chest items
+  if (side === "back" && (isNoChest || isChest)) {
+    return "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
+  }
+
+  // Fallback (for unknown items)
+  return "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
 };
 
 type ImagePlacementTwoProps = {
