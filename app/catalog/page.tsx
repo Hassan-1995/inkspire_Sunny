@@ -55,30 +55,52 @@ const CatalogPage = () => {
   ];
   const bags = [
     { id: 1, type: "bags", title: "Tote-Bags", image: "/bags/tote-bag.jpg" },
-    { id: 2, type: "bags", title: "Grocerry-Bag", image: "/bags.png" },
-    { id: 3, type: "bags", title: "Laptop-Sleeves", image: "/bags.png" },
-    { id: 4, type: "bags", title: "Pouches", image: "/bags.png" },
-  ];
-  const sports = [
-    { id: 1, type: "sports", title: "Paddle Tennis", image: "/mascot_02.png" },
-    { id: 2, type: "sports", title: "Skate Boards", image: "/mascot_02.png" },
-    { id: 3, type: "sports", title: "Yoga Mats", image: "/mascot_02.png" },
+    {
+      id: 2,
+      type: "bags",
+      title: "Grocery-Bags",
+      image: "/bags/grocery-bag.png",
+    },
+    {
+      id: 3,
+      type: "bags",
+      title: "Laptop-Sleeves",
+      image: "/bags/laptop-sleeve.png",
+    },
+    { id: 4, type: "bags", title: "Pouches", image: "/bags/pouch.png" },
   ];
   const homes = [
-    { id: 1, type: "home", title: "Pillow Cases", image: "/mascot_02.png" },
-    { id: 2, type: "home", title: "Blankets", image: "/mascot_02.png" },
-    { id: 3, type: "home", title: "Towels", image: "/mascot_02.png" },
-    { id: 4, type: "home", title: "Curtains", image: "/mascot_02.png" },
-    { id: 5, type: "home", title: "Wall Clocks", image: "/mascot_02.png" },
-    { id: 6, type: "home", title: "Lampshades", image: "/mascot_02.png" },
-    { id: 7, type: "home", title: "Apron", image: "/mascot_02.png" },
+    {
+      id: 1,
+      type: "home",
+      title: "Pillow-Cases",
+      image: "/homes/pillow-cases.png",
+    },
+    { id: 2, type: "home", title: "Blankets", image: "/homes/blankets.png" },
+    { id: 3, type: "home", title: "Towels", image: "/homes/towels.png" },
+    { id: 4, type: "home", title: "Curtains", image: "/homes/curtains.png" },
+    {
+      id: 5,
+      type: "home",
+      title: "Wall-Clocks",
+      image: "/homes/wall-clocks.png",
+    },
+    { id: 6, type: "home", title: "Apron", image: "/homes/aprons.png" },
   ];
   const others = [
-    { id: 1, type: "others", title: "Banners", image: "/mascot_02.png" },
-    { id: 2, type: "others", title: "Phone Cases", image: "/mascot_02.png" },
-    { id: 3, type: "others", title: "Kids & Baby", image: "/mascot_02.png" },
-    { id: 4, type: "others", title: "Folder", image: "/mascot_02.png" },
-    { id: 5, type: "others", title: "Pens", image: "/mascot_02.png" },
+    { id: 1, type: "others", title: "Banners", image: "/others/banners.png" },
+    {
+      id: 2,
+      type: "others",
+      title: "Paddle-Tennis",
+      image: "/others/paddle-tennis.png",
+    },
+    {
+      id: 3,
+      type: "others",
+      title: "Yoga-Mats",
+      image: "/others/yoga-mat.png",
+    },
   ];
 
   return (
@@ -111,16 +133,6 @@ const CatalogPage = () => {
         {bags.map((bag) => (
           <li key={bag.id}>
             <ProductCard items={bag} />
-          </li>
-        ))}
-      </ul>
-      <h1 className="font-semibold my-3 md:text-lg lg:text-2xl text-zinc-700">
-        Sports & Outdoor Gear
-      </h1>
-      <ul className="flex justify-around gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
-        {sports.map((sport) => (
-          <li key={sport.id}>
-            <ProductCard items={sport} />
           </li>
         ))}
       </ul>

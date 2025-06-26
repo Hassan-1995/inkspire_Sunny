@@ -20,12 +20,26 @@ type SizeMapProps = {
   default: SizeClassMap;
   front: SizeClassMap;
   back: SizeClassMap;
-  "Full-Sleeves_front"?: SizeClassMap;
+  "T-Shirts_front"?: SizeClassMap;
   Polos_front?: SizeClassMap;
-  Polos_back?: SizeClassMap;
+  "Full-Sleeves_front"?: SizeClassMap;
+  "Varsity-Jackets_front"?: SizeClassMap;
+  Hoodies_front?: SizeClassMap;
+  Hoodies_back?: SizeClassMap;
+
   [key: string]: SizeClassMap | undefined; // Allow additional catalog-specific keys
 };
 
+const sharedFrontStyle01: SizeClassMap = {
+  S: "w-[25%] h-[25%]",
+  M: "w-[30%] h-[30%]",
+  L: "w-[40%] h-[40%]",
+};
+const sharedFrontStyle02: SizeClassMap = {
+  S: "w-[8%] h-[8%]",
+  M: "w-[10%] h-[10%]",
+  L: "w-[12%] h-[12%]",
+};
 const getImageSizeClass = (
   catalogItem: string,
   side: "front" | "back",
@@ -38,29 +52,28 @@ const getImageSizeClass = (
       L: "w-28 h-28",
     },
     front: {
-      S: "w-20 h-20",
-      M: "w-24 h-24",
-      L: "w-28 h-28",
+      S: "w-[25%] h-[25%]",
+      M: "w-[30%] h-[30%]",
+      L: "w-[40%] h-[40%]",
     },
     back: {
-      S: "w-24 h-24",
-      M: "w-32 h-32",
-      L: "w-40 h-40",
+      S: "w-[25%] h-[25%]",
+      M: "w-[30%] h-[30%]",
+      L: "w-[40%] h-[40%]",
     },
-    "Full-Sleeves_front": {
-      S: "w-28 h-28",
-      M: "w-36 h-36",
-      L: "w-48 h-48",
+    "Full-Sleeves_front": sharedFrontStyle01,
+    "T-Shirts_front": sharedFrontStyle01,
+    "Varsity-Jackets_front": sharedFrontStyle02,
+    Polos_front: sharedFrontStyle02,
+    Hoodies_front: {
+      S: "w-[25%] h-[25%]",
+      M: "w-[30%] h-[30%]",
+      L: "w-[35%] h-[35%]",
     },
-    Polos_front: {
-      S: "w-14 h-14",
-      M: "w-20 h-20",
-      L: "w-24 h-24",
-    },
-    Polos_back: {
-      S: "w-20 h-20",
-      M: "w-28 h-28",
-      L: "w-36 h-36",
+    Hoodies_back: {
+      S: "w-[25%] h-[25%]",
+      M: "w-[30%] h-[30%]",
+      L: "w-[35%] h-[35%]",
     },
   };
 
@@ -73,7 +86,7 @@ const getImageSizeClass = (
 const getImagePositionClass = (catalogItem: string, side: "front" | "back") => {
   const chestItems = ["Polos", "Varsity-Jackets"];
   const noChestItems = ["T-Shirts", "Full-Sleeves", "Hoodies"];
-  const bagItems = ["Tote-Bags"];
+  const bagItems = ["Tote-Bags", "Grocery-Bags"];
 
   const isChest = chestItems.includes(catalogItem);
   const isNoChest = noChestItems.includes(catalogItem);
@@ -81,7 +94,7 @@ const getImagePositionClass = (catalogItem: string, side: "front" | "back") => {
 
   // Bag logic (applies to both sides)
   if (isBag) {
-    return "top-2/3 left-1/2 -translate-x-1/2 -translate-y-1/2";
+    return "top-[64%] left-1/2 -translate-x-1/2 -translate-y-1/2";
   }
 
   // Chest logic on front
@@ -135,7 +148,7 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="w-full aspect-[7/4] md:aspect-[7/8]">
+        <div className="w-full aspect-[7/8] md:aspect-[7/8]">
           <ProductWithImage
             productImage={productFrontPath!}
             uploadedImage={uploadedImagePrimary}
@@ -148,7 +161,7 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
           />
         </div>
 
-        <div className="w-full aspect-[7/4] md:aspect-[7/8]">
+        <div className="w-full aspect-[7/8] md:aspect-[7/8]">
           <ProductWithImage
             productImage={productBackPath!}
             uploadedImage={uploadedImagePrimary}

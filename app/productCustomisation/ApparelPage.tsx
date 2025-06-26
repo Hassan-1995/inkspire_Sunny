@@ -1,10 +1,8 @@
 "use client";
-import React from "react";
-import ImageUploaderTwo from "./components/ImageUploaderTwo";
-import ImagePlacementTwo from "./components/ImagePlacementTwo";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import ImageUploaderOne from "./components/ImageUploaderOne";
+import ImagePlacementTwo from "./components/ImagePlacementTwo";
+import ImageUploaderTwo from "./components/ImageUploaderTwo";
 
 type ApparelPageProps = {
   catalog: string;
@@ -20,7 +18,6 @@ const ApparelPage = ({ catalog, catalogItem }: ApparelPageProps) => {
       <h1>{catalog}</h1>
       <h1>{catalogItem}</h1>
       {progress === 1 && <ImageUploaderTwo />}
-      {/* {progress === 1 &&  <ImageUploaderOne />} */}
       {progress === 2 && <ImagePlacementTwo catalogItem={catalogItem} />}
     </div>
   );
