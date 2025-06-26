@@ -85,7 +85,7 @@ const CatalogPage = () => {
       title: "Wall-Clocks",
       image: "/homes/wall-clocks.png",
     },
-    { id: 6, type: "home", title: "Apron", image: "/homes/aprons.png" },
+    { id: 6, type: "home", title: "Aprons", image: "/homes/aprons.png" },
   ];
   const others = [
     { id: 1, type: "others", title: "Banners", image: "/others/banners.png" },

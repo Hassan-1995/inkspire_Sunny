@@ -1,16 +1,15 @@
 "use client";
-import React from "react";
-import ImageUploaderTwo from "./components/ImageUploaderTwo";
-import ImagePlacementTwo from "./components/ImagePlacementTwo";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import ImagePlacementOne from "./components/ImagePlacementOne";
+import ImageUploaderOne from "./components/ImageUploaderOne";
 
-type BagPageProps = {
+type SinglePageProps = {
   catalog: string;
   catalogItem: string;
 };
 
-const BagPage = ({ catalog, catalogItem }: BagPageProps) => {
+const SinglePage = ({ catalog, catalogItem }: SinglePageProps) => {
   const progress = useSelector(
     (state: RootState) => state.progressBar.progressBarValue
   );
@@ -18,10 +17,10 @@ const BagPage = ({ catalog, catalogItem }: BagPageProps) => {
     <div className="w-full md:4/5 lg:w-2/3 my-10">
       <h1>{catalog}</h1>
       <h1>{catalogItem}</h1>
-      {progress === 1 && <ImageUploaderTwo />}
-      {progress === 2 && <ImagePlacementTwo catalogItem={catalogItem} />}
+      {progress === 1 && <ImageUploaderOne />}
+      {progress === 2 && <ImagePlacementOne catalogItem={catalogItem} />}
     </div>
   );
 };
 
-export default BagPage;
+export default SinglePage;

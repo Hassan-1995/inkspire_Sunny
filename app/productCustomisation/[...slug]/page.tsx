@@ -2,6 +2,7 @@ import React from "react";
 import ProgressBar from "../components/ProgressBar";
 import ApparelPage from "../ApparelPage";
 import DrinkwarePage from "../DrinkwarePage";
+import SinglePage from "../SinglePage";
 
 type ProductCustomisationProps = {
   params: Promise<{ slug: string[] }>;
@@ -20,6 +21,9 @@ const ProductCustomisation = async (props: ProductCustomisationProps) => {
       break;
     case "drinkwares":
       CustomComponent = DrinkwarePage;
+      break;
+    case "home":
+      CustomComponent = SinglePage;
       break;
     default:
       const ComingSoon = () => <div>Coming soon...</div>;
