@@ -9,6 +9,7 @@ const designSizes = [
   { name: "L", value: "Large" },
 ];
 
+
 const FrontSize = () => {
   const dispatch = useDispatch();
 

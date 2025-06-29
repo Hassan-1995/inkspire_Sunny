@@ -1,7 +1,10 @@
 "use client";
 import { useDispatch } from "react-redux";
 import SingleImageUploader from "../../components/SingleImageUploader";
-import { setPrimaryImage } from "@/app/store/slices/uploadedImageSlice";
+import {
+  setPrimaryImage,
+  setSecondaryImage,
+} from "@/app/store/slices/uploadedImageSlice";
 
 const ImageUploaderTwo = () => {
   const dispatch = useDispatch();
@@ -18,8 +21,8 @@ const ImageUploaderTwo = () => {
       <div className="aspect-[6/7] w-full">
         <SingleImageUploader
           localStorageKey="uploadedImageBack"
-          onUpload={(url) => console.log("second: ", url)}
-          // onUpload={(url) => dispatch(setSecondaryImage(url))}
+          // onUpload={(url) => console.log("second: ", url)}
+          onUpload={(url) => dispatch(setSecondaryImage(url))}
           label="Back Design"
         />
       </div>

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import ImagePlacementOne from "./components/ImagePlacementOne";
 import ImageUploaderOne from "./components/ImageUploaderOne";
+import ImageFinalisation from "./components/ImageFinalisation";
 
 type SinglePageProps = {
   catalog: string;
@@ -19,6 +20,9 @@ const SinglePage = ({ catalog, catalogItem }: SinglePageProps) => {
       <h1>{catalogItem}</h1>
       {progress === 1 && <ImageUploaderOne />}
       {progress === 2 && <ImagePlacementOne catalogItem={catalogItem} />}
+      {progress === 3 && (
+        <ImageFinalisation catalog={catalog} catalogItem={catalogItem} />
+      )}
     </div>
   );
 };

@@ -23,6 +23,7 @@ const ProductCustomisation = async (props: ProductCustomisationProps) => {
       CustomComponent = DrinkwarePage;
       break;
     case "home":
+    case "others":
       CustomComponent = SinglePage;
       break;
     default:

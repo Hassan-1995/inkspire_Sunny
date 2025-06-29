@@ -7,8 +7,8 @@ const WrapperCanvasFlask = ({ imageUrl }: { imageUrl: string }) => {
       height={1.5}
       topRadius={0.85}
       bottomRadius={0.89}
-      angleFraction={1}
-      rotation={[0.1, -0.9, 0]}
+      angleFraction={0.9}
+      rotation={[0.16, -1.1, 0]}
     />
   );
 };

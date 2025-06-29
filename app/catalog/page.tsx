@@ -10,25 +10,35 @@ const CatalogPage = () => {
       id: 1,
       type: "apparels",
       title: "T-Shirts",
+      productType: "Round Neck T-Shirt",
       image: "/apparels/t_shirts.jpg",
     },
-    { id: 2, type: "apparels", title: "Polos", image: "/apparels/polo.jpg" },
+    {
+      id: 2,
+      type: "apparels",
+      title: "Polos",
+      productType: "Polo Shirt",
+      image: "/apparels/polo.jpg",
+    },
     {
       id: 3,
       type: "apparels",
       title: "Full-Sleeves",
+      productType: "Full Sleeve T-Shirt",
       image: "/apparels/fullSleeve.jpg",
     },
     {
       id: 5,
       type: "apparels",
       title: "Varsity-Jackets",
+      productType: "Varsity Jacket",
       image: "/apparels/varsity.jpg",
     },
     {
       id: 6,
       type: "apparels",
       title: "Hoodies",
+      productType: "Pullover Hoodie",
       image: "/apparels/hoodie.jpg",
     },
   ];
@@ -37,71 +47,113 @@ const CatalogPage = () => {
       id: 1,
       type: "drinkwares",
       title: "Bottles",
+      productType: "Water Bottle",
       image: "/drinkwares/Bottles.png",
     },
-    { id: 2, type: "drinkwares", title: "Mugs", image: "/drinkwares/Mugs.png" },
+    {
+      id: 2,
+      type: "drinkwares",
+      title: "Mugs",
+      productType: "Ceramic Mug",
+      image: "/drinkwares/Mugs.png",
+    },
     {
       id: 3,
       type: "drinkwares",
       title: "Jars",
+      productType: "Storage Jar",
       image: "/drinkwares/Jars.png",
     },
     {
       id: 4,
       type: "drinkwares",
       title: "Flasks",
+      productType: "Insulated Flask",
       image: "/drinkwares/Flasks.png",
     },
   ];
   const bags = [
-    { id: 1, type: "bags", title: "Tote-Bags", image: "/bags/tote-bag.jpg" },
+    {
+      id: 1,
+      type: "bags",
+      title: "Tote-Bags",
+      productType: "Tote Bag",
+      image: "/bags/tote-bag.jpg",
+    },
     {
       id: 2,
       type: "bags",
       title: "Grocery-Bags",
+      productType: "Grocery Bag",
       image: "/bags/grocery-bag.png",
     },
     {
       id: 3,
       type: "bags",
       title: "Laptop-Sleeves",
+      productType: "Laptop Sleeve",
       image: "/bags/laptop-sleeve.png",
     },
-    { id: 4, type: "bags", title: "Pouches", image: "/bags/pouch.png" },
+    {
+      id: 4,
+      type: "bags",
+      title: "Pouches",
+      productType: "Zipper Pouch",
+      image: "/bags/pouch.png",
+    },
   ];
   const homes = [
     {
       id: 1,
       type: "home",
-      title: "Pillow-Cases",
-      image: "/homes/pillow-cases.png",
+      title: "Blankets",
+      productType: "Soft Blanket",
+      image: "/homes/blankets.png",
     },
-    { id: 2, type: "home", title: "Blankets", image: "/homes/blankets.png" },
-    { id: 3, type: "home", title: "Towels", image: "/homes/towels.png" },
-    { id: 4, type: "home", title: "Curtains", image: "/homes/curtains.png" },
-    {
-      id: 5,
-      type: "home",
-      title: "Wall-Clocks",
-      image: "/homes/wall-clocks.png",
-    },
-    { id: 6, type: "home", title: "Aprons", image: "/homes/aprons.png" },
-  ];
-  const others = [
-    { id: 1, type: "others", title: "Banners", image: "/others/banners.png" },
     {
       id: 2,
-      type: "others",
-      title: "Paddle-Tennis",
-      image: "/others/paddle-tennis.png",
+      type: "home",
+      title: "Towels",
+      productType: "Bath Towel",
+      image: "/homes/towels.png",
     },
     {
       id: 3,
-      type: "others",
-      title: "Yoga-Mats",
-      image: "/others/yoga-mat.png",
+      type: "home",
+      title: "Curtains",
+      productType: "Window Curtain",
+      image: "/homes/curtains.png",
+    },
+    {
+      id: 4,
+      type: "home",
+      title: "Wall-Clocks",
+      productType: "Wall Clock",
+      image: "/homes/wall-clocks.png",
+    },
+    {
+      id: 5,
+      type: "home",
+      title: "Aprons",
+      productType: "Kitchen Apron",
+      image: "/homes/aprons.png",
     },
   ];
+  // const others = [
+  //   { id: 1, type: "others", title: "Banners", image: "/others/banners.png" },
+  //   {
+  //     id: 2,
+  //     type: "others",
+  //     title: "Paddle-Tennis",
+  //     image: "/others/paddle-tennis.png",
+  //   },
+  //   {
+  //     id: 3,
+  //     type: "others",
+  //     title: "Yoga-Mats",
+  //     image: "/others/yoga-mat.png",
+  //   },
+  // ];
 
   return (
     <div className="py-3 px-5">
@@ -146,7 +198,7 @@ const CatalogPage = () => {
           </li>
         ))}
       </ul>
-      <h1 className="font-semibold my-3 md:text-lg lg:text-2xl text-zinc-700">
+      {/* <h1 className="font-semibold my-3 md:text-lg lg:text-2xl text-zinc-700">
         Others
       </h1>
       <ul className="flex justify-around gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
@@ -155,7 +207,7 @@ const CatalogPage = () => {
             <ProductCard items={other} />
           </li>
         ))}
-      </ul>
+      </ul> */}
       <CustomProductSection />
     </div>
   );

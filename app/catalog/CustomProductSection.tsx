@@ -13,7 +13,7 @@ const CustomProductSection = () => {
         {/* Mascot Image */}
         <div className="relative w-10 md:w-16 lg:w-20 aspect-square">
           <Image
-            src="/mascot_05.png"
+            src="/mascots/mascot_confused.png"
             alt="Inkspire Mascot"
             fill
             className="object-contain"
@@ -23,7 +23,7 @@ const CustomProductSection = () => {
       <div className="flex justify-center items-center gap-3">
         <div className="relative w-10 md:w-16 lg:w-20 aspect-square">
           <Image
-            src="/mascot_04.png"
+            src="/mascots/mascot_thumbsUp.png"
             alt="Inkspire Mascot"
             fill
             className="object-contain"

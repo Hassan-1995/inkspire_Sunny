@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import ImageUploaderOne from "./components/ImageUploaderOne";
 import ImagePlacementDrinkware from "./components/ImagePlacementDrinkware";
+import ImageFinalisation from "./components/ImageFinalisation";
 
 type DrinkwarePageProps = {
   catalog: string;
@@ -19,6 +20,9 @@ const DrinkwarePage = ({ catalog, catalogItem }: DrinkwarePageProps) => {
       <h1>{catalogItem}</h1>
       {progress === 1 && <ImageUploaderOne />}
       {progress === 2 && <ImagePlacementDrinkware catalogItem={catalogItem} />}
+      {progress === 3 && (
+        <ImageFinalisation catalog={catalog} catalogItem={catalogItem} />
+      )}
     </div>
   );
 };

@@ -1,5 +1,8 @@
 "use client";
-import { setProductPath } from "@/app/store/slices/productSlice";
+import {
+  setProductPath,
+  setProductPrice,
+} from "@/app/store/slices/productSlice";
 import { RootState } from "@/app/store/store";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,79 +22,109 @@ type SizeMapProps = {
   default: SizeClassMap;
   front: SizeClassMap;
   Blankets_front?: SizeClassMap;
+  Towels_front?: SizeClassMap;
+  Curtains_front?: SizeClassMap;
+  "Wall-Clock_front"?: SizeClassMap;
+  Aprons_front?: SizeClassMap;
+  "Yoga-Mats_front"?: SizeClassMap;
   [key: string]: SizeClassMap | undefined; // Allow additional catalog-specific keys
 };
 const sharedFrontStyle01: SizeClassMap = {
-  S: "w-[10%] h-[35%]",
-  M: "w-[15%] h-[50%]",
+  S: "w-[20%] h-[35%]",
+  M: "w-[20%] h-[50%]",
   L: "w-[20%] h-[70%]",
 };
+// const getImageSizeClass = (
+//   catalogItem: string,
+//   side: "front" | "back",
+//   size: SizeOptions
+// ): string => {
+//   const sizeMap: SizeMapProps = {
+//     default: {
+//       S: "w-20 h-20",
+//       M: "w-24 h-24",
+//       L: "w-28 h-28",
+//     },
+//     front: {
+//       S: "w-[20%] h-[45%]",
+//       M: "w-[25%] h-[60%]",
+//       L: "w-[30%] h-[70%]",
+//     },
+//     Blankets_front: {
+//       S: "w-[35%] h-[55%]",
+//       M: "w-[35%] h-[65%]",
+//       L: "w-[35%] h-[75%]",
+//     },
+//     Aprons_front: {
+//       S: "w-[30%] h-[30%]",
+//       M: "w-[30%] h-[35%]",
+//       L: "w-[30%] h-[40%]",
+//     },
+//     Towels_front: sharedFrontStyle01,
+//     Curtains_front: sharedFrontStyle01,
+//     "Wall-Clocks_front": {
+//       S: "w-[18%] h-[30%]",
+//       M: "w-[24%] h-[40%]",
+//       L: "w-[30%] h-[50%]",
+//     },
+//     "Yoga-Mats_front": {
+//       S: "w-[18%] h-[50%]",
+//       M: "w-[18%] h-[65%]",
+//       L: "w-[18%] h-[80%]",
+//     },
+//   };
+
+//   const key = `${catalogItem}_${side}`;
+//   if (sizeMap[key]?.[size]) return sizeMap[key]![size];
+
+//   return sizeMap[side]?.[size] || sizeMap.default[size];
+// };
 const getImageSizeClass = (
   catalogItem: string,
   side: "front" | "back",
   size: SizeOptions
 ): string => {
+  const key = `${catalogItem}_${side}`;
+
   const sizeMap: SizeMapProps = {
-    default: {
-      S: "w-20 h-20",
-      M: "w-24 h-24",
-      L: "w-28 h-28",
-    },
-    front: {
-      S: "w-[20%] h-[45%]",
-      M: "w-[25%] h-[60%]",
-      L: "w-[30%] h-[70%]",
-    },
+    default: { S: "w-20 h-20", M: "w-24 h-24", L: "w-28 h-28" },
+    front: { S: "w-[20%] h-[45%]", M: "w-[25%] h-[60%]", L: "w-[30%] h-[70%]" },
     Blankets_front: {
-      S: "w-[20%] h-[45%]",
-      M: "w-[25%] h-[60%]",
-      L: "w-[30%] h-[70%]",
+      S: "w-[35%] h-[55%]",
+      M: "w-[35%] h-[65%]",
+      L: "w-[35%] h-[75%]",
     },
     Aprons_front: {
-      S: "w-[20%] h-[40%]",
-      M: "w-[25%] h-[50%]",
-      L: "w-[30%] h-[60%]",
+      S: "w-[30%] h-[30%]",
+      M: "w-[30%] h-[35%]",
+      L: "w-[30%] h-[40%]",
     },
     Towels_front: sharedFrontStyle01,
     Curtains_front: sharedFrontStyle01,
+    "Wall-Clocks_front": {
+      S: "w-[18%] h-[30%]",
+      M: "w-[24%] h-[40%]",
+      L: "w-[30%] h-[50%]",
+    },
+    "Yoga-Mats_front": {
+      S: "w-[18%] h-[50%]",
+      M: "w-[18%] h-[65%]",
+      L: "w-[18%] h-[80%]",
+    },
   };
 
-  const key = `${catalogItem}_${side}`;
-  if (sizeMap[key]?.[size]) return sizeMap[key]![size];
-
-  return sizeMap[side]?.[size] || sizeMap.default[size];
+  return sizeMap[key]?.[size] || sizeMap[side]?.[size] || sizeMap.default[size];
 };
 
 const getImagePositionClass = (catalogItem: string, side: "front" | "back") => {
-  const chestItems = ["Polos", "Varsity-Jackets"];
-  const noChestItems = ["T-Shirts", "Full-Sleeves", "Hoodies"];
-  const bagItems = ["Tote-Bags", "Grocery-Bags"];
-
-  const isChest = chestItems.includes(catalogItem);
-  const isNoChest = noChestItems.includes(catalogItem);
-  const isBag = bagItems.includes(catalogItem);
-
-  // Bag logic (applies to both sides)
-  if (isBag) {
-    return "top-[64%] left-1/2 -translate-x-1/2 -translate-y-1/2";
-  }
-
-  // Chest logic on front
-  if (isChest && side === "front") {
-    return "top-[35%] left-[60%] -translate-x-[60%] -translate-y-[35%]";
-  }
-
-  // No-chest items on front
-  if (isNoChest && side === "front") {
+  const isBlanket = catalogItem === "Blankets";
+  const isApron = catalogItem === "Aprons";
+  if (isBlanket && side === "front") {
     return "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
   }
-
-  // All back-side logic for noChest or chest items
-  if (side === "back" && (isNoChest || isChest)) {
-    return "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
+  if (isApron && side === "front") {
+    return "top-[58%] left-1/2 -translate-x-1/2 -translate-y-1/2";
   }
-
-  // Fallback (for unknown items)
   return "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
 };
 
@@ -115,11 +148,51 @@ const ImagePlacementOne = ({ catalogItem }: ImagePlacementOneProps) => {
       dispatch(
         setProductPath({
           front: `/${catalogItem}/black_front.png`, // default front value
-          back: `/${catalogItem}/black_back.png`, // default back value
+          // back: `/${catalogItem}/black_back.png`, // default back value
+          back: null, // default back value
         })
       );
     }
   }, []);
+
+  useEffect(() => {
+    const price = getProductPrice(catalogItem);
+    dispatch(setProductPrice(price));
+  }, [catalogItem, dispatch]);
+
+  const getProductPrice = (catalogItem: string) => {
+    const basePrice01Items = ["Blankets", "Curtains"];
+    const basePrice02Items = ["Towels", "Wall-Clocks", "Aprons"];
+    if (basePrice01Items.includes(catalogItem)) return 2500;
+    if (basePrice02Items.includes(catalogItem)) return 800;
+    return 0;
+  };
+
+  const getDesignPriceFront = (item: string, size: string): number => {
+    const Items01 = ["Blankets"];
+    const Items02 = ["Towels", "Curtains", "Aprons"];
+    const Items03 = ["Wall-Clocks"];
+
+    if (Items01.includes(item)) {
+      if (size === "S") return 550;
+      if (size === "M") return 650;
+      if (size === "L") return 700;
+    }
+
+    if (Items02.includes(item)) {
+      if (size === "S") return 450;
+      if (size === "M") return 550;
+      if (size === "L") return 600;
+    }
+
+    if (Items03.includes(item)) {
+      if (size === "S") return 200;
+      if (size === "M") return 200;
+      if (size === "L") return 200;
+    }
+
+    return 0;
+  };
 
   return (
     <>
@@ -141,8 +214,22 @@ const ImagePlacementOne = ({ catalogItem }: ImagePlacementOneProps) => {
         />
       </div>
       {/* </div> */}
-      <ColorSelector catalogItem={catalogItem} />
-      <FrontSize />
+      <div className="flex justify-between items-center">
+        <div>
+          <ColorSelector catalogItem={catalogItem} />
+        </div>
+        <h1 className="text-gray-500 mb-1 text-sm">
+          Rs: {getProductPrice(catalogItem)}
+        </h1>
+      </div>
+      <div className="flex justify-between items-center">
+        <div>
+          <FrontSize />
+        </div>
+        <h1 className="text-gray-500 mb-1 text-sm">
+          Rs: {getDesignPriceFront(catalogItem, uploadedImageSizePrimary)}
+        </h1>
+      </div>
     </>
   );
 };

@@ -1,5 +1,10 @@
 "use client";
-import { setProductPath } from "@/app/store/slices/productSlice";
+import {
+  setDesignPriceBack,
+  setDesignPriceFront,
+  setProductPath,
+  setProductPrice,
+} from "@/app/store/slices/productSlice";
 import { RootState } from "@/app/store/store";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +12,7 @@ import BackSize from "./BackSize";
 import ColorSelector from "./ColorSelector";
 import FrontSize from "./FrontSize";
 import ProductWithImage from "./ProductWithImage";
+import SizeSelector from "./SizeSelector";
 
 type SizeOptions = "S" | "M" | "L";
 
@@ -26,19 +32,30 @@ type SizeMapProps = {
   "Varsity-Jackets_front"?: SizeClassMap;
   Hoodies_front?: SizeClassMap;
   Hoodies_back?: SizeClassMap;
-
+  "Laptop-Sleeves_front"?: SizeClassMap;
+  Laptop_back?: SizeClassMap;
   [key: string]: SizeClassMap | undefined; // Allow additional catalog-specific keys
 };
 
 const sharedFrontStyle01: SizeClassMap = {
-  S: "w-[25%] h-[25%]",
-  M: "w-[30%] h-[30%]",
+  S: "w-[40%] h-[25%]",
+  M: "w-[40%] h-[30%]",
   L: "w-[40%] h-[40%]",
 };
 const sharedFrontStyle02: SizeClassMap = {
-  S: "w-[8%] h-[8%]",
-  M: "w-[10%] h-[10%]",
+  S: "w-[12%] h-[8%]",
+  M: "w-[12%] h-[10%]",
   L: "w-[12%] h-[12%]",
+};
+const hoodieStyle: SizeClassMap = {
+  S: "w-[35%] h-[25%]",
+  M: "w-[35%] h-[30%]",
+  L: "w-[35%] h-[35%]",
+};
+const laptopStyle: SizeClassMap = {
+  S: "w-[60%] h-[25%]",
+  M: "w-[60%] h-[30%]",
+  L: "w-[60%] h-[35%]",
 };
 const getImageSizeClass = (
   catalogItem: string,
@@ -57,24 +74,18 @@ const getImageSizeClass = (
       L: "w-[40%] h-[40%]",
     },
     back: {
-      S: "w-[25%] h-[25%]",
-      M: "w-[30%] h-[30%]",
+      S: "w-[40%] h-[25%]",
+      M: "w-[40%] h-[30%]",
       L: "w-[40%] h-[40%]",
     },
     "Full-Sleeves_front": sharedFrontStyle01,
     "T-Shirts_front": sharedFrontStyle01,
     "Varsity-Jackets_front": sharedFrontStyle02,
     Polos_front: sharedFrontStyle02,
-    Hoodies_front: {
-      S: "w-[25%] h-[25%]",
-      M: "w-[30%] h-[30%]",
-      L: "w-[35%] h-[35%]",
-    },
-    Hoodies_back: {
-      S: "w-[25%] h-[25%]",
-      M: "w-[30%] h-[30%]",
-      L: "w-[35%] h-[35%]",
-    },
+    Hoodies_front: hoodieStyle,
+    Hoodies_back: hoodieStyle,
+    "Laptop-Sleeves_front": laptopStyle,
+    "Laptop-Sleeves_back": laptopStyle,
   };
 
   const key = `${catalogItem}_${side}`;
@@ -85,16 +96,21 @@ const getImageSizeClass = (
 
 const getImagePositionClass = (catalogItem: string, side: "front" | "back") => {
   const chestItems = ["Polos", "Varsity-Jackets"];
-  const noChestItems = ["T-Shirts", "Full-Sleeves", "Hoodies"];
+  const noChestItems = ["Hoodies", "Full-Sleeves"];
   const bagItems = ["Tote-Bags", "Grocery-Bags"];
+  const t_shirts = ["T-Shirts"];
 
   const isChest = chestItems.includes(catalogItem);
   const isNoChest = noChestItems.includes(catalogItem);
   const isBag = bagItems.includes(catalogItem);
+  const isTShirt = t_shirts.includes(catalogItem);
 
   // Bag logic (applies to both sides)
   if (isBag) {
     return "top-[64%] left-1/2 -translate-x-1/2 -translate-y-1/2";
+  }
+  if (isTShirt) {
+    return "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
   }
 
   // Chest logic on front
@@ -104,7 +120,7 @@ const getImagePositionClass = (catalogItem: string, side: "front" | "back") => {
 
   // No-chest items on front
   if (isNoChest && side === "front") {
-    return "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
+    return "top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2";
   }
 
   // All back-side logic for noChest or chest items
@@ -130,7 +146,7 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
     uploadedImageSizeSecondary,
   } = useSelector((state: RootState) => state.product);
   // get uploadedImages
-  const { uploadedImagePrimary } = useSelector(
+  const { uploadedImagePrimary, uploadedImageSecondary } = useSelector(
     (state: RootState) => state.uploadedImage
   );
   // initialised the values (default values)
@@ -144,6 +160,98 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
       );
     }
   }, []);
+
+  useEffect(() => {
+    const price = getProductPrice(catalogItem);
+    dispatch(setProductPrice(price));
+  }, [catalogItem, dispatch]);
+  useEffect(() => {
+    const designFrontPrice = getDesignPriceFront(
+      catalogItem,
+      uploadedImageSizePrimary
+    );
+    dispatch(setDesignPriceFront(designFrontPrice));
+  }, [catalogItem, uploadedImageSizePrimary, dispatch]);
+  useEffect(() => {
+    const designBackPrice = getDesignPriceBack(
+      catalogItem,
+      uploadedImageSizeSecondary!
+    );
+    dispatch(setDesignPriceBack(designBackPrice));
+  }, [catalogItem, uploadedImageSizeSecondary, dispatch]);
+
+  const getProductPrice = (catalogItem: string) => {
+    const basePrice01Items = ["T-Shirts", "Laptop-Sleeves"];
+    const basePrice02Items = [
+      "Polos",
+      "Full-Sleeves",
+      "Hoodies",
+      "Varsity-Jackets",
+    ];
+    const basePrice03Items = ["Tote-Bags", "Grocery-Bags"];
+
+    if (basePrice01Items.includes(catalogItem)) return 450;
+    if (basePrice02Items.includes(catalogItem)) return 550;
+    if (basePrice03Items.includes(catalogItem)) return 200;
+    return 0;
+  };
+
+  const getDesignPriceFront = (item: string, size: string): number => {
+    const Items01 = ["T-Shirts", "Full-Sleeves", "Hoodies"];
+    const Items02 = ["Varsity-Jackets", "Polos"];
+    const Items03 = ["Tote-Bags", "Grocery-Bags", "Laptop-Sleeves"];
+
+    if (Items01.includes(item)) {
+      if (size === "S") return 250;
+      if (size === "M") return 300;
+      if (size === "L") return 350;
+    }
+
+    if (Items02.includes(item)) {
+      if (size === "S") return 100;
+      if (size === "M") return 150;
+      if (size === "L") return 200;
+    }
+
+    if (Items03.includes(item)) {
+      if (size === "S") return 150;
+      if (size === "M") return 200;
+      if (size === "L") return 250;
+    }
+
+    return 0;
+  };
+  const getDesignPriceBack = (item: string, size: string): number => {
+    const Items01 = [
+      "T-Shirts",
+      "Polos",
+      "Full-Sleeves",
+      "Varsity-Jackets",
+      "Hoodies",
+    ];
+    const Items02 = [""];
+    const Items03 = ["Tote-Bags", "Grocery-Bags", "Laptop-Sleeves"];
+
+    if (Items01.includes(item)) {
+      if (size === "S") return 250;
+      if (size === "M") return 300;
+      if (size === "L") return 350;
+    }
+
+    if (Items02.includes(item)) {
+      if (size === "S") return 100;
+      if (size === "M") return 150;
+      if (size === "L") return 200;
+    }
+
+    if (Items03.includes(item)) {
+      if (size === "S") return 150;
+      if (size === "M") return 200;
+      if (size === "L") return 250;
+    }
+
+    return 0;
+  };
 
   return (
     <>
@@ -164,7 +272,7 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
         <div className="w-full aspect-[7/8] md:aspect-[7/8]">
           <ProductWithImage
             productImage={productBackPath!}
-            uploadedImage={uploadedImagePrimary}
+            uploadedImage={uploadedImageSecondary}
             uploadedImagePosition={getImagePositionClass(catalogItem, "back")}
             sizeClass={getImageSizeClass(
               catalogItem,
@@ -174,9 +282,31 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
           />
         </div>
       </div>
-      <ColorSelector catalogItem={catalogItem} />
-      <FrontSize />
-      <BackSize />
+      <div className="flex justify-between items-center">
+        <div>
+          <ColorSelector catalogItem={catalogItem} />
+        </div>
+        <h1 className="text-gray-500 mb-1 text-sm">
+          Rs: {getProductPrice(catalogItem)}
+        </h1>
+      </div>
+      <SizeSelector />
+      <div className="flex justify-between items-center">
+        <div>
+          <FrontSize />
+        </div>
+        <h1 className="text-gray-500 mb-1 text-sm">
+          Rs: {getDesignPriceFront(catalogItem, uploadedImageSizePrimary)}
+        </h1>
+      </div>
+      <div className="flex justify-between items-center">
+        <div>
+          <BackSize />
+        </div>
+        <h1 className="text-gray-500 mb-1 text-sm">
+          Rs: {getDesignPriceBack(catalogItem, uploadedImageSizeSecondary!)}
+        </h1>
+      </div>
     </>
   );
 };

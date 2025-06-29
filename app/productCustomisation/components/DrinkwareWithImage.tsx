@@ -33,7 +33,7 @@ const DrinkwareWithImage = ({
             </div>
           )}
           {drinkware === "Bottles" && (
-            <div className="absolute top-[2.5%] -left-[12%] w-full h-full">
+            <div className="absolute top-[2.5%] -left-[13%] w-full h-full">
               <WrapperCanvasBottle imageUrl={uploadedImage} />
             </div>
           )}
