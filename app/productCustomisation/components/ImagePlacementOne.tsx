@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ColorSelector from "./ColorSelector";
 import FrontSize from "./FrontSize";
 import ProductWithImage from "./ProductWithImage";
+import SizeChartModal from "./SizeChartModal";
 
 type SizeOptions = "S" | "M" | "L";
 
@@ -34,51 +35,6 @@ const sharedFrontStyle01: SizeClassMap = {
   M: "w-[20%] h-[50%]",
   L: "w-[20%] h-[70%]",
 };
-// const getImageSizeClass = (
-//   catalogItem: string,
-//   side: "front" | "back",
-//   size: SizeOptions
-// ): string => {
-//   const sizeMap: SizeMapProps = {
-//     default: {
-//       S: "w-20 h-20",
-//       M: "w-24 h-24",
-//       L: "w-28 h-28",
-//     },
-//     front: {
-//       S: "w-[20%] h-[45%]",
-//       M: "w-[25%] h-[60%]",
-//       L: "w-[30%] h-[70%]",
-//     },
-//     Blankets_front: {
-//       S: "w-[35%] h-[55%]",
-//       M: "w-[35%] h-[65%]",
-//       L: "w-[35%] h-[75%]",
-//     },
-//     Aprons_front: {
-//       S: "w-[30%] h-[30%]",
-//       M: "w-[30%] h-[35%]",
-//       L: "w-[30%] h-[40%]",
-//     },
-//     Towels_front: sharedFrontStyle01,
-//     Curtains_front: sharedFrontStyle01,
-//     "Wall-Clocks_front": {
-//       S: "w-[18%] h-[30%]",
-//       M: "w-[24%] h-[40%]",
-//       L: "w-[30%] h-[50%]",
-//     },
-//     "Yoga-Mats_front": {
-//       S: "w-[18%] h-[50%]",
-//       M: "w-[18%] h-[65%]",
-//       L: "w-[18%] h-[80%]",
-//     },
-//   };
-
-//   const key = `${catalogItem}_${side}`;
-//   if (sizeMap[key]?.[size]) return sizeMap[key]![size];
-
-//   return sizeMap[side]?.[size] || sizeMap.default[size];
-// };
 const getImageSizeClass = (
   catalogItem: string,
   side: "front" | "back",
@@ -214,7 +170,7 @@ const ImagePlacementOne = ({ catalogItem }: ImagePlacementOneProps) => {
         />
       </div>
       {/* </div> */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center my-2">
         <div>
           <ColorSelector catalogItem={catalogItem} />
         </div>
@@ -222,7 +178,11 @@ const ImagePlacementOne = ({ catalogItem }: ImagePlacementOneProps) => {
           Rs: {getProductPrice(catalogItem)}
         </h1>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="mb-2">
+        <p className="text-gray-500 mb-1 text-xs">SIZE:</p>
+        <SizeChartModal catalogItem={catalogItem} />
+      </div>
+      <div className="flex justify-between items-center mb-2">
         <div>
           <FrontSize />
         </div>

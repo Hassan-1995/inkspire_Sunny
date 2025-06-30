@@ -1,15 +1,14 @@
 "use client";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/app/store/store";
 import {
-  removeFromCart,
-  incrementQuantity,
   decrementQuantity,
+  incrementQuantity,
+  removeFromCart,
 } from "@/app/store/slices/cartSlice";
+import { RootState } from "@/app/store/store";
 import Image from "next/image";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { FaMinus, FaPlus } from "react-icons/fa";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "./EmptyCart";
 
 const CartPage = () => {
@@ -143,6 +142,12 @@ const CartPage = () => {
           </div>
         </>
       )}
+      <button
+        // onClick={}
+        className="cursor-pointer flex w-full items-center justify-center text-white font-semibold bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
+      >
+        Proceed to Checkout
+      </button>
     </div>
   );
 };

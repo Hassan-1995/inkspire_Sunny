@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ColorSelector from "./ColorSelector";
 import DrinkwareWithImage from "./DrinkwareWithImage";
+import SizeChartModal from "./SizeChartModal";
 
 type ImagePlacementDrinkwareProps = {
   catalogItem: string;
@@ -59,13 +60,17 @@ const ImagePlacementDrinkware = ({
           drinkware={catalogItem}
         />
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center my-2">
         <div>
           <ColorSelector catalogItem={catalogItem} />
         </div>
         <h1 className="text-gray-500 mb-1 text-sm">
           Rs: {getProductPrice(catalogItem)}
         </h1>
+      </div>
+      <div className="mb-2">
+        <p className="text-gray-500 mb-1 text-xs">SIZE:</p>
+        <SizeChartModal catalogItem={catalogItem} />
       </div>
     </>
   );

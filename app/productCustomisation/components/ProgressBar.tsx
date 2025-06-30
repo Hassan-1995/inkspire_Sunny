@@ -30,6 +30,9 @@ const ProgressBar = () => {
     },
   ];
 
+  
+
+
   const handleProgress = (progressID: number) => {
     dispatch(setProgressBarValue(progressID));
   };

@@ -103,8 +103,6 @@ const ColorSelector = ({ catalogItem }: ColorSelectorProps) => {
   return (
     <>
       <p className="text-gray-500 mb-1 text-xs">COLOR:</p>
-      <p className="text-gray-500 mb-1 text-xs">{productColor}</p>
-
       <div className="flex gap-2">
         {colorNames.map((colorName) => (
           <button

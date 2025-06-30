@@ -12,6 +12,7 @@ import BackSize from "./BackSize";
 import ColorSelector from "./ColorSelector";
 import FrontSize from "./FrontSize";
 import ProductWithImage from "./ProductWithImage";
+import SizeChartModal from "./SizeChartModal";
 import SizeSelector from "./SizeSelector";
 
 type SizeOptions = "S" | "M" | "L";
@@ -133,10 +134,14 @@ const getImagePositionClass = (catalogItem: string, side: "front" | "back") => {
 };
 
 type ImagePlacementTwoProps = {
+  catalog: string;
   catalogItem: string;
 };
 
-const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
+const ImagePlacementTwo = ({
+  catalog,
+  catalogItem,
+}: ImagePlacementTwoProps) => {
   const dispatch = useDispatch();
   //get all the values from productSlice
   const {
@@ -282,7 +287,7 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
           />
         </div>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center my-2">
         <div>
           <ColorSelector catalogItem={catalogItem} />
         </div>
@@ -290,8 +295,24 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
           Rs: {getProductPrice(catalogItem)}
         </h1>
       </div>
-      <SizeSelector />
-      <div className="flex justify-between items-center">
+
+      {catalog === "apparels" ? (
+        <div className="flex justify-between items-center mb-2">
+          <div>
+            <SizeSelector />
+          </div>
+          <div>
+            <SizeChartModal catalogItem={catalogItem} />
+          </div>
+        </div>
+      ) : (
+        <div className="mb-2">
+          <p className="text-gray-500 mb-1 text-xs">SIZE:</p>
+          <SizeChartModal catalogItem={catalogItem} />
+        </div>
+      )}
+
+      <div className="flex justify-between items-center mb-2">
         <div>
           <FrontSize />
         </div>
@@ -299,7 +320,7 @@ const ImagePlacementTwo = ({ catalogItem }: ImagePlacementTwoProps) => {
           Rs: {getDesignPriceFront(catalogItem, uploadedImageSizePrimary)}
         </h1>
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center  mb-2">
         <div>
           <BackSize />
         </div>
