@@ -1,4 +1,5 @@
 "use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,6 +11,7 @@ import {
 } from "react-icons/ri";
 
 const NavBar = () => {
+  const { status, data: session } = useSession();
   const [modal, setModal] = useState(false);
   const [signOut, setSignOut] = useState(false);
 
@@ -65,13 +67,31 @@ const NavBar = () => {
         </ul>
 
         <div className="flex items-center gap-4">
-          <Link
-            // href={"/api/auth/signin"}
-            href={"/api/auth/localAuth"}
-            className="hidden md:flex text-white font-semibold bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
-          >
-            Sign In
-          </Link>
+          {status === "loading" && (
+            <div className="text-stone-700 animate-pulse">Loading...</div>
+          )}
+          {status === "unauthenticated" && (
+            <Link
+              href={"/api/auth/localAuth"}
+              className="hidden md:flex text-white font-semibold bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
+            >
+              Sign In
+            </Link>
+          )}
+          {status === "authenticated" && (
+            <button
+              onClick={() => setSignOut(true)}
+              className="hidden md:flex cursor-pointer"
+            >
+              <Image
+                src={session.user!.image || ""}
+                alt="User Image"
+                width={50}
+                height={50}
+                className="rounded-xl"
+              />
+            </button>
+          )}
 
           <Link
             href={"/cart"}
@@ -113,13 +133,22 @@ const NavBar = () => {
         </ul>
         <div className="flex items-center justify-between px-2">
           {/* Sign In Button */}
-          <Link
-            // href={"/api/auth/signin"}
-            href={"/api/auth/localAuth"}
-            className="flex-1 text-center bg-purple-600 text-white font-semibold rounded-lg py-2 px-4 hover:bg-purple-700 transition-colors"
-          >
-            Sign In
-          </Link>
+          {status === "unauthenticated" && (
+            <Link
+              href={"/api/auth/signin"}
+              className="flex-1 text-center bg-purple-600 text-white font-semibold rounded-lg py-2 px-4 hover:bg-purple-700 transition-colors"
+            >
+              Sign In
+            </Link>
+          )}
+          {status === "authenticated" && (
+            <button
+              onClick={() => setSignOut(true)}
+              className="flex-1 text-center bg-purple-600 text-white font-semibold rounded-lg py-2 px-4 hover:bg-purple-700 transition-colors"
+            >
+              {session.user?.name}
+            </button>
+          )}
 
           {/* Spacer */}
           <div className="w-3"></div>

@@ -48,8 +48,8 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-sm text-zinc-500">
-              One of the premier shirt manufacturer since 2015. Quality,
-              craftsmanship and pride in every stitch.
+              Your go-to custom print partner since 2015. Precision, creativity
+              and care on everything you can print on.
             </p>
           </div>
           <div>

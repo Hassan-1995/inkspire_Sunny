@@ -142,7 +142,7 @@ const ImageFinalisation = ({
           </div>
         </div>
       </div>
-      <div className="flex justify-end">
+      <div className="flex justify-end my-2">
         <AddToCart
           productID={`${(productType || catalogItem).replace(
             /\s+/g,
