@@ -41,7 +41,7 @@ const CartItem = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ amount: 5850 }),
+          body: JSON.stringify({ amount: getTotalPrice() }),
         });
 
         if (!res.ok) {

@@ -1,7 +1,7 @@
 "use client";
 import { setColor, setProductPath } from "@/app/store/slices/productSlice";
 import { RootState } from "@/app/store/store";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 type ColorSelectorProps = {
@@ -21,11 +21,7 @@ const ColorSelector = ({ catalogItem }: ColorSelectorProps) => {
     (state: RootState) => state.product
   );
 
-  useEffect(() => {
-    handleInitialValues();
-  }, []);
-
-  const handleInitialValues = () => {
+  const handleInitialValues = useCallback(() => {
     // Extract catalog from the current productFrontPath
     const existingCatalog = productFrontPath
       ? productFrontPath.split("/")[1]
@@ -69,7 +65,12 @@ const ColorSelector = ({ catalogItem }: ColorSelectorProps) => {
         back: backPath,
       })
     );
-  };
+  }, [catalogItem, dispatch, productBackPath, productFrontPath]);
+
+  // called handleInitialValues function to set the initial values
+  useEffect(() => {
+    handleInitialValues();
+  }, [handleInitialValues]);
 
   const handleColor = (color: string) => {
     dispatch(setColor(color));

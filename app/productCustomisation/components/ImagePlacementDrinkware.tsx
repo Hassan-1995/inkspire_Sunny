@@ -32,7 +32,7 @@ const ImagePlacementDrinkware = ({
         })
       );
     }
-  }, []);
+  }, [catalogItem, dispatch, productFrontPath]);
 
   const getProductPrice = (catalogItem: string) => {
     let price = 0;

@@ -164,7 +164,7 @@ const ImagePlacementTwo = ({
         })
       );
     }
-  }, []);
+  }, [catalogItem, dispatch, productFrontPath]);
 
   useEffect(() => {
     const price = getProductPrice(catalogItem);

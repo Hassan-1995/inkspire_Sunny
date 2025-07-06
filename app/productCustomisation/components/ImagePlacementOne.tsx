@@ -109,7 +109,7 @@ const ImagePlacementOne = ({ catalogItem }: ImagePlacementOneProps) => {
         })
       );
     }
-  }, []);
+  }, [catalogItem, dispatch, productFrontPath]);
 
   useEffect(() => {
     const price = getProductPrice(catalogItem);
