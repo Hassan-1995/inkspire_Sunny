@@ -161,7 +161,7 @@ import Image from "next/image";
 const CartPage = () => {
   return (
     <div>
-      <section className="border-b border-amber-300 mb-2 text-white py-16 px-6 text-center">
+      <section className="mb-2 text-white py-5 text-center">
         <div className="flex justify-center items-end">
           <h1 className="text-4xl md:text-5xl  font-semibold bg-gradient-to-r from-indigo-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
             InkSpire

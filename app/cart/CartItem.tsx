@@ -67,7 +67,9 @@ const CartItem = () => {
         <EmptyCart />
       ) : (
         <>
-          <h1 className="text-2xl font-semibold mb-4">Your Cart</h1>
+          <h1 className="text-2xl sm:text-3xl font-semibold text-purple-800 tracking-wide mb-4 text-center">
+            Your Cart
+          </h1>
           {cartItems.map((item) => (
             <div
               key={item.productID}
