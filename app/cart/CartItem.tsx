@@ -88,15 +88,17 @@ const CartItem = () => {
                     />
                   </div>
 
-                  {/* Front Design */}
-                  <div className="relative w-full aspect-square flex justify-center items-center">
-                    <Image
-                      src={item.uploadedImagePrimary}
-                      alt="Front Design"
-                      fill
-                      className="object-contain rounded border border-zinc-300 shadow-sm"
-                    />
-                  </div>
+                  {/* Front Design (conditional) */}
+                  {item.uploadedImagePrimary && (
+                    <div className="relative w-full aspect-square flex justify-center items-center">
+                      <Image
+                        src={item.uploadedImagePrimary}
+                        alt="Front Design"
+                        fill
+                        className="object-contain rounded border border-zinc-300 shadow-sm"
+                      />
+                    </div>
+                  )}
 
                   {/* Back View (conditional) */}
                   {item.productBackPath && (

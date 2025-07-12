@@ -1,10 +1,9 @@
-import React from "react";
-import ProductCard from "./ProductCard";
 import Header from "../components/Header";
 import CustomProductSection from "./CustomProductSection";
+import ProductCard from "./ProductCard";
 
 const CatalogPage = () => {
-  // need static data for showing catalog
+  //   // need static data for showing catalog
   const apparels = [
     {
       id: 1,
@@ -139,78 +138,44 @@ const CatalogPage = () => {
       image: "/homes/aprons.png",
     },
   ];
-  // const others = [
-  //   { id: 1, type: "others", title: "Banners", image: "/others/banners.png" },
-  //   {
-  //     id: 2,
-  //     type: "others",
-  //     title: "Paddle-Tennis",
-  //     image: "/others/paddle-tennis.png",
-  //   },
-  //   {
-  //     id: 3,
-  //     type: "others",
-  //     title: "Yoga-Mats",
-  //     image: "/others/yoga-mat.png",
-  //   },
-  // ];
-
   return (
-    <div className="py-3 px-5">
+    <div className="max-w-6xl mx-auto py-6 px-4 md:px-8 lg:px-12">
       <Header title="Explore Our Collection" />
-      <h1 className="font-semibold my-3 md:text-lg lg:text-2xl text-zinc-700">
-        Apparels
-      </h1>
-      <ul className="flex justify-around gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
-        {apparels.map((apparel) => (
-          <li key={apparel.id}>
-            <ProductCard items={apparel} />
-          </li>
-        ))}
-      </ul>
-      <h1 className="font-semibold my-3 md:text-lg lg:text-2xl text-zinc-700">
-        Drinkwares
-      </h1>
-      <ul className="flex justify-around gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
-        {drinkwares.map((drinkware) => (
-          <li key={drinkware.id}>
-            <ProductCard items={drinkware} />
-          </li>
-        ))}
-      </ul>
-      <h1 className="font-semibold my-3 md:text-lg lg:text-2xl text-zinc-700">
-        Bags & Accessories
-      </h1>
-      <ul className="flex justify-around gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
-        {bags.map((bag) => (
-          <li key={bag.id}>
-            <ProductCard items={bag} />
-          </li>
-        ))}
-      </ul>
-      <h1 className="font-semibold my-3 md:text-lg lg:text-2xl text-zinc-700">
-        Home & Living
-      </h1>
-      <ul className="flex justify-around gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
-        {homes.map((home) => (
-          <li key={home.id}>
-            <ProductCard items={home} />
-          </li>
-        ))}
-      </ul>
-      {/* <h1 className="font-semibold my-3 md:text-lg lg:text-2xl text-zinc-700">
-        Others
-      </h1>
-      <ul className="flex justify-around gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
-        {others.map((other) => (
-          <li key={other.id}>
-            <ProductCard items={other} />
-          </li>
-        ))}
-      </ul> */}
+
+      <Section title="Apparels" items={apparels} />
+      <Section title="Drinkwares" items={drinkwares} />
+      <Section title="Bags & Accessories" items={bags} />
+      <Section title="Home & Living" items={homes} />
+
       <CustomProductSection />
     </div>
   );
 };
+
+type SectionProps = {
+  title: string;
+  items: {
+    id: number;
+    type: string;
+    title: string;
+    productType: string;
+    image: string;
+  }[];
+};
+
+const Section = ({ title, items }: SectionProps) => (
+  <section className="mb-10">
+    <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-zinc-800 pb-1 mb-4">
+      {title}
+    </h2>
+    <ul className="flex justify-around gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
+      {items.map((item) => (
+        <li key={item.id} className="snap-start">
+          <ProductCard items={item} />
+        </li>
+      ))}
+    </ul>
+  </section>
+);
 
 export default CatalogPage;

@@ -46,13 +46,23 @@ const ImageFinalisation = ({
     ["Name", productType || catalogItem],
     ["Size", handleSize() || productSize || "N/A"],
     ["Color", productColor],
-    ["Design Size Front", handleSize() || uploadedImageSizePrimary],
+    // ["Design Size Front", handleSize() || uploadedImageSizePrimary],
+    [
+      "Design Size Front",
+      handleSize() || uploadedImagePrimary !== ""
+        ? uploadedImageSizePrimary
+        : "N/A",
+    ],
   ];
 
   const catalogsWithBackDesign = ["apparels", "bags"]; // add
 
   if (catalogsWithBackDesign.includes(catalog)) {
-    details.push(["Design Size Back", uploadedImageSizeSecondary!]);
+    // details.push(["Design Size Back", uploadedImageSizeSecondary!]);
+    details.push([
+      "Design Size Back",
+      uploadedImageSecondary !== "" ? uploadedImageSizeSecondary : "N/A",
+    ]);
   }
 
   return (

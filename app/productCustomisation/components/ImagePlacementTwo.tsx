@@ -175,15 +175,26 @@ const ImagePlacementTwo = ({
       catalogItem,
       uploadedImageSizePrimary
     );
-    dispatch(setDesignPriceFront(designFrontPrice));
-  }, [catalogItem, uploadedImageSizePrimary, dispatch]);
+    // dispatch(setDesignPriceFront(designFrontPrice));
+    dispatch(
+      setDesignPriceFront(uploadedImagePrimary !== "" ? designFrontPrice : 0)
+    );
+  }, [catalogItem, uploadedImageSizePrimary, dispatch, uploadedImagePrimary]);
   useEffect(() => {
     const designBackPrice = getDesignPriceBack(
       catalogItem,
       uploadedImageSizeSecondary!
     );
-    dispatch(setDesignPriceBack(designBackPrice));
-  }, [catalogItem, uploadedImageSizeSecondary, dispatch]);
+    // dispatch(setDesignPriceBack(designBackPrice));
+    dispatch(
+      setDesignPriceBack(uploadedImageSecondary !== "" ? designBackPrice : 0)
+    );
+  }, [
+    catalogItem,
+    uploadedImageSizeSecondary,
+    dispatch,
+    uploadedImageSecondary,
+  ]);
 
   const getProductPrice = (catalogItem: string) => {
     const basePrice01Items = ["T-Shirts", "Laptop-Sleeves"];
@@ -312,22 +323,26 @@ const ImagePlacementTwo = ({
         </div>
       )}
 
-      <div className="flex justify-between items-center mb-2">
-        <div>
-          <FrontSize />
+      {uploadedImagePrimary !== "" && (
+        <div className="flex justify-between items-center mb-2">
+          <div>
+            <FrontSize />
+          </div>
+          <h1 className="text-gray-500 mb-1 text-sm">
+            Rs: {getDesignPriceFront(catalogItem, uploadedImageSizePrimary)}
+          </h1>
         </div>
-        <h1 className="text-gray-500 mb-1 text-sm">
-          Rs: {getDesignPriceFront(catalogItem, uploadedImageSizePrimary)}
-        </h1>
-      </div>
-      <div className="flex justify-between items-center  mb-2">
-        <div>
-          <BackSize />
+      )}
+      {uploadedImageSecondary !== "" && (
+        <div className="flex justify-between items-center  mb-2">
+          <div>
+            <BackSize />
+          </div>
+          <h1 className="text-gray-500 mb-1 text-sm">
+            Rs: {getDesignPriceBack(catalogItem, uploadedImageSizeSecondary!)}
+          </h1>
         </div>
-        <h1 className="text-gray-500 mb-1 text-sm">
-          Rs: {getDesignPriceBack(catalogItem, uploadedImageSizeSecondary!)}
-        </h1>
-      </div>
+      )}
     </>
   );
 };

@@ -1,5 +1,6 @@
 "use client";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import SingleImageUploader from "../../components/SingleImageUploader";
 import {
   setPrimaryImage,
@@ -8,23 +9,54 @@ import {
 
 const ImageUploaderTwo = () => {
   const dispatch = useDispatch();
+
+  const [frontKey] = useState("uploadedImageFront");
+  const [backKey] = useState("uploadedImageBack");
+
+  const handleDeleteFront = () => {
+    localStorage.removeItem(frontKey);
+    dispatch(setPrimaryImage(null)); // clear Redux
+    window.location.reload();
+  };
+
+  const handleDeleteBack = () => {
+    localStorage.removeItem(backKey);
+    dispatch(setSecondaryImage(null)); // clear Redux
+    window.location.reload();
+  };
+
   return (
-    // <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div className="aspect-[6/7] w-full">
-        <SingleImageUploader
-          localStorageKey="uploadedImageFront"
-          onUpload={(url) => dispatch(setPrimaryImage(url))}
-          label="Front Design"
-        />
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="flex flex-col gap-2">
+        <div className="aspect-[6/7] w-full">
+          <SingleImageUploader
+            localStorageKey={frontKey}
+            onUpload={(url) => dispatch(setPrimaryImage(url))}
+            label="Front Design"
+          />
+        </div>
+        <button
+          onClick={handleDeleteFront}
+          className="cursor-pointer text-sm bg-red-500 text-white py-1 rounded hover:bg-red-600 transition-colors"
+        >
+          Delete Front Image
+        </button>
       </div>
-      <div className="aspect-[6/7] w-full">
-        <SingleImageUploader
-          localStorageKey="uploadedImageBack"
-          // onUpload={(url) => console.log("second: ", url)}
-          onUpload={(url) => dispatch(setSecondaryImage(url))}
-          label="Back Design"
-        />
+
+      <div className="flex flex-col gap-2">
+        <div className="aspect-[6/7] w-full">
+          <SingleImageUploader
+            localStorageKey={backKey}
+            onUpload={(url) => dispatch(setSecondaryImage(url))}
+            label="Back Design"
+          />
+        </div>
+        <button
+          onClick={handleDeleteBack}
+          className="cursor-pointer text-sm bg-red-500 text-white py-1 rounded hover:bg-red-600 transition-colors"
+        >
+          Delete Back Image
+        </button>
       </div>
     </div>
   );

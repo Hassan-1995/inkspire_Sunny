@@ -22,6 +22,7 @@ model User {
   emailVerified   DateTime?
   passwordHash    String?
   physicalAddress String?
+  contactNumber   String? // Added: nullable contact number
   image           String?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
