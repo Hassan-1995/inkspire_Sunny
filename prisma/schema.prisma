@@ -16,18 +16,19 @@ datasource db {
 
 model User {
   // id              Int       @id @default(autoincrement())
-  id              String    @id @default(cuid())
+  id              String      @id @default(cuid())
   name            String?
-  email           String?   @unique
+  email           String?     @unique
   emailVerified   DateTime?
   passwordHash    String?
   physicalAddress String?
   contactNumber   String? // Added: nullable contact number
   image           String?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
   Account         Account[]
   Session         Session[]
+  UserOrder       UserOrder[]
 }
 
 model Account {
@@ -64,4 +65,42 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model UserOrder {
+  id      Int     @id @default(autoincrement())
+  orderID String? // optional, for order grouping
+  userID  String // references User table
+
+  productID    String // SKU-like string
+  productName  String
+  productPrice Int
+  productColor String
+  productSize  String
+  quantity     Int
+
+  primaryImageSize   String? // "L", "M", "S"
+  secondaryImageSize String? // "L", "M", "S"
+
+  productFrontPath       String
+  productBackPath        String?
+  uploadedImagePrimary   String?
+  uploadedImageSecondary String?
+
+  status Status @default(Placed)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [userID], references: [id])
+}
+
+enum Status {
+  Placed
+  Confirmed
+  Delivered
+  Cancelled
+  Returned
+  Processing
 }

@@ -61,7 +61,7 @@ const ImageFinalisation = ({
     // details.push(["Design Size Back", uploadedImageSizeSecondary!]);
     details.push([
       "Design Size Back",
-      uploadedImageSecondary !== "" ? uploadedImageSizeSecondary : "N/A",
+      uploadedImageSecondary !== "" ? uploadedImageSizeSecondary! : "N/A",
     ]);
   }
 
