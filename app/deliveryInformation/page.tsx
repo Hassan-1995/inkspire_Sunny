@@ -1,10 +1,12 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const DeliveryInformation = () => {
   const { status, data: session } = useSession();
+  const router = useRouter();
   const [address, setAddress] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,9 +33,6 @@ const DeliveryInformation = () => {
   };
 
   const handleSave = async () => {
-    console.log("hello");
-    console.log("Address: ", address);
-    console.log("Number: ", contactNumber);
     setLoading(true);
     try {
       const res = await fetch("/api/delivery-info", {
@@ -47,8 +46,11 @@ const DeliveryInformation = () => {
       if (!res.ok) {
         throw new Error("Failed to save delivery information.");
       }
+      alert("Delivery information saved successfully!");
+      router.push("/cart");
     } catch (error) {
       console.error("Error saving delivery info:", error);
+      alert("Failed to save delivery information. Please try again.");
     } finally {
       setLoading(false);
     }

@@ -12,10 +12,12 @@ import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "./EmptyCart";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const CartItem = () => {
   const dispatch = useDispatch();
   const { status } = useSession();
+  const router = useRouter();
 
   const [warning, setWarning] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -29,23 +31,31 @@ const CartItem = () => {
 
   const handleCheckOut = async () => {
     setLoading(true);
-    if (status !== "authenticated") {
-      setWarning(true);
-      return;
-    }
-    if (status === "authenticated") {
+    try {
+      if (status !== "authenticated") {
+        setWarning(true);
+        router.push("/api/auth/localAuth");
+        return;
+      }
+
       setWarning(false);
+
+      const hasDeliveryInfo = await fetchUserAddress();
+      if (!hasDeliveryInfo) {
+        alert("Please complete your delivery information before checking out.");
+        router.push("/deliveryInformation");
+        return;
+      }
+
       try {
         const res = await fetch("/api/checkout", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ amount: getTotalPrice() }),
         });
 
         if (!res.ok) {
-          const error = await res.json(); // ← 405 will fail here too
+          const error = await res.json();
           console.error("Stripe Error:", error);
           alert(`Error: ${error.error}`);
           return;
@@ -57,8 +67,25 @@ const CartItem = () => {
         console.error("Unexpected error:", err);
         alert("Something went wrong");
       }
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
+  };
+
+  const fetchUserAddress = async () => {
+    try {
+      const res = await fetch("/api/delivery-info");
+      if (!res.ok) {
+        console.error("Failed to fetch delivery info:", res.status);
+        return false;
+      }
+      const data = await res.json();
+      const hasAddress = Boolean(data.physicalAddress && data.contactNumber);
+      return hasAddress;
+    } catch (error) {
+      console.error("Error fetching user info:", error);
+      return false;
+    }
   };
 
   return (
@@ -189,7 +216,7 @@ const CartItem = () => {
             disabled={loading}
             className="my-2 cursor-pointer flex w-full items-center justify-center text-white font-semibold bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
           >
-            Proceed to Checkout
+            {loading ? "Please Wait" : "Proceed to Checkout"}
           </button>
           <p
             className={`my-4 text-2xl items-center ${
