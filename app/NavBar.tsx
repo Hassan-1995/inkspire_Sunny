@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   RiMenuFold3Line,
   RiMenuUnfold3Line,
@@ -22,6 +22,10 @@ const NavBar = () => {
     { label: "Gallery", href: "/gallery" },
     { label: "About", href: "/about" },
   ];
+
+  useEffect(() => {
+    setModal(false);
+  }, [pathName]);
 
   return (
     <nav
@@ -56,8 +60,8 @@ const NavBar = () => {
             <li key={link.label}>
               <Link
                 href={link.href}
-                className={`"text-stone-700" hover:text-purple-600 transition-colors ${
-                  pathName === link.href && "underline underline-offset-[5px]"
+                className={`"text-stone-700" hover:text-pink-600 transition-colors ${
+                  pathName === link.href && "text-purple-600"
                 }`}
               >
                 {link.label}
@@ -73,7 +77,7 @@ const NavBar = () => {
           {status === "unauthenticated" && (
             <Link
               href={"/api/auth/localAuth"}
-              className="hidden md:flex text-white font-semibold bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
+              className="hidden md:flex w-full py-1 px-2.5 md:py-2 md:px-3.5 rounded-lg font-bold transition transform hover:scale-105 active:scale-95 shadow-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white"
             >
               Sign In
             </Link>
@@ -124,7 +128,11 @@ const NavBar = () => {
           {mainLinks.map((link) => (
             <li key={link.label}>
               <Link href={link.href} onClick={() => setModal((prev) => !prev)}>
-                <span className="block w-full text-base font-semibold text-purple-700 hover:text-purple-900 transition-colors px-3 py-2 rounded-md hover:bg-purple-100">
+                <span
+                  className={`block w-full text-base font-semibold text-stone-700 px-3 py-2 rounded-md ${
+                    pathName === link.href ? "text-purple-600" : ""
+                  } `}
+                >
                   {link.label}
                 </span>
               </Link>
@@ -136,7 +144,7 @@ const NavBar = () => {
           {status === "unauthenticated" && (
             <Link
               href={"/api/auth/signin"}
-              className="flex-1 text-center bg-purple-600 text-white font-semibold rounded-lg py-2 px-4 hover:bg-purple-700 transition-colors"
+              className="w-full text-center py-2 px-4 rounded-lg font-bold transition transform hover:scale-105 active:scale-95 shadow-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white"
             >
               Sign In
             </Link>

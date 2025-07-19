@@ -49,7 +49,7 @@ const MainSection = () => {
             ].map((step, index) => (
               <div key={index} className="text-center relative p-4">
                 <div className="relative">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <div className="w-16 h-16 bg-gradient-to-r from-pink-600 to-pink-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
                     <step.icon className="h-8 w-8 text-white" />
                   </div>
                   <div className="absolute -top-2 -right-2 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">

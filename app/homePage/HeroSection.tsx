@@ -38,7 +38,7 @@ const HeroSection = () => {
         <div className="px-5">
           <h1 className="text-5xl md:text-7xl font-bold text-stone-900 mb-6 leading-tight">
             Wear Your
-            <span className="bg-gradient-to-r from-indigo-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 bg-clip-text text-transparent">
               {" "}
               Imagination
             </span>
@@ -58,16 +58,14 @@ const HeroSection = () => {
           <div className="md:flex items-center md:space-x-4 space-y-4 md:space-y-0 px-5">
             <Link
               href={"/"}
-              className="flex items-center justify-center text-white font-semibold bg-purple-600 border border-purple-600 rounded-xl hover:bg-purple-700 transition-colors 
-              py-3 px-6"
+              className="flex items-center justify-center py-3 px-6 rounded-lg font-semibold transition transform hover:scale-105 active:scale-95 shadow-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white"
             >
               Start Designing
               <FaArrowRight className="ml-2 w-5 h-5" />
             </Link>
             <Link
               href={"/"}
-              className="flex justify-center text-zinc-600 font-semibold bg-white border rounded-xl hover:bg-stone-100 transition-colors 
-              py-3 px-6"
+              className="flex items-center justify-center py-3 px-6 rounded-lg font-semibold transition-transform duration-200 ease-out hover:scale-105 hover:bg-pink-600 hover:text-white hover:border-pink-700 active:scale-95 active:bg-purple-800 active:text-white shadow-md hover:shadow-xl bg-white border border-pink-600 text-pink-700"
             >
               Shop Now
             </Link>

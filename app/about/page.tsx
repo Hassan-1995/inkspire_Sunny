@@ -10,17 +10,18 @@ import {
   LuUsers,
   LuZap,
 } from "react-icons/lu";
+import Header from "../components/Header";
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-orange-50 to-emerald-50">
       <section className="relative overflow-hidden py-20 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <div className="space-y-4">
                 <div className="flex items-center">
-                  <div className="bg-purple-100 text-purple-600 hover:bg-purple-100 px-4 py-2 text-sm font-medium rounded-full w-max h-max">
+                  <div className="bg-gradient-to-r from-pink-500 to-pink-700 text-white px-4 py-2 text-sm font-medium rounded-full w-max h-max">
                     ✨ Creative Print Solutions
                   </div>
                   <Image
@@ -44,13 +45,13 @@ const AboutPage = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href={"/"}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="flex items-center justify-center py-3 px-6 rounded-lg font-semibold transition transform hover:scale-105 active:scale-95 shadow-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white"
                 >
                   Start Creating
                 </Link>
                 <Link
                   href={"/"}
-                  className="border-2 border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3 rounded-full text-lg font-medium bg-transparent"
+                  className="flex items-center justify-center py-3 px-6 rounded-lg font-semibold transition-transform duration-200 ease-out hover:scale-105 hover:bg-pink-600 hover:text-white hover:border-pink-700 active:scale-95 active:bg-purple-800 active:text-white shadow-md hover:shadow-xl bg-white border border-pink-600 text-pink-700"
                 >
                   View Products
                 </Link>
@@ -76,10 +77,10 @@ const AboutPage = () => {
       <section className="py-20 px-4 md:px-6 bg-white">
         <div className="container mx-auto max-w-4xl text-center">
           <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-4xl md:text-5xl font-bold text-pink-800">
               Our Creative Journey
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
+            <p className="text-xl text-purple-600 leading-relaxed">
               Founded with a passion for creativity and quality, InkSpire began
               as a small dream to make custom printing accessible to everyone.
               Today, we&apos;re proud to help thousands of creators, businesses,
@@ -90,12 +91,10 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="py-20 px-4 md:px-6 bg-gray-50">
+      <section className=" pt-10 pb-20 px-4 md:px-6 bg-gradient-to-br from-blue-50 via-blue-100 to-emerald-100">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              What We Create
-            </h2>
+            <Header title="What We Create" />
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               From apparel to accessories, we bring your designs to life on
               premium products
@@ -103,7 +102,7 @@ const AboutPage = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg rounded-3xl overflow-hidden">
+            <div className="group hover:shadow-2xl bg-white/30 transition-all duration-300 border-0 shadow-lg rounded-3xl overflow-hidden">
               <div className="p-8 text-center space-y-6">
                 <div className="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
                   <LuShirt className="w-10 h-10 text-purple-600" />
@@ -127,7 +126,7 @@ const AboutPage = () => {
               </div>
             </div>
 
-            <div className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg rounded-3xl overflow-hidden">
+            <div className="group hover:shadow-2xl bg-white/30 transition-all duration-300 border-0 shadow-lg rounded-3xl overflow-hidden">
               <div className="p-8 text-center space-y-6">
                 <div className="bg-indigo-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
                   <LuShoppingBag className="w-10 h-10 text-indigo-600" />
@@ -151,7 +150,7 @@ const AboutPage = () => {
               </div>
             </div>
 
-            <div className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg rounded-3xl overflow-hidden">
+            <div className="group hover:shadow-2xl bg-white/30 transition-all duration-300 border-0 shadow-lg rounded-3xl overflow-hidden">
               <div className="p-8 text-center space-y-6">
                 <div className="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
                   <LuCoffee className="w-10 h-10 text-green-600" />
@@ -181,10 +180,10 @@ const AboutPage = () => {
       <section className="py-20 px-4 md:px-6 bg-white">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-purple-800 mb-6">
               Why Choose InkSpire?
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-pink-600 max-w-2xl mx-auto">
               We&apos;re committed to delivering exceptional quality and service
               in everything we do
             </p>

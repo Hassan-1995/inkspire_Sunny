@@ -62,8 +62,8 @@ const CallToActionSection = () => {
       <div className="flex min-w-full px-3 justify-center mt-5">
         <Link
           href={"/"}
-          className="flex items-center justify-center text-white font-semibold bg-purple-600 border border-purple-600 rounded-xl hover:bg-purple-700 transition-colors 
-          w-3/5 md:w-1/2 lg:w-1/3  py-2 md:py-3"
+          className="flex items-center justify-center py-3 px-6 rounded-lg font-semibold transition-transform duration-200 ease-out hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl bg-pink-600 hover:bg-purple-600 hover:text-white hover:border-purple-700 active:bg-purple-800 border border-pink-600 text-white w-3/5 md:w-1/2 lg:w-1/3 md:py-3"
+          // className="flex items-center justify-center py-3 px-6 rounded-lg font-semibold transition-transform duration-200 ease-out hover:scale-105 active:scale-95 shadow-xl hover:shadow-2xl bg-purple-600 hover:bg-pink-600 hover:text-white hover:border-pink-700 active:bg-purple-800 border border-purple-600 text-white w-3/5 md:w-1/2 lg:w-1/3 md:py-3"
         >
           Start Designing
           <FaArrowRight className="ml-2 w-5 h-5" />

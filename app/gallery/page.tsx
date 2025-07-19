@@ -10,13 +10,13 @@ const GalleryPage = ({ searchParams }: GalleryPageProps) => {
   const activeCategory =
     typeof searchParams.category === "string" ? searchParams.category : "all";
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-gray-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-orange-50 to-emerald-50">
       <section className="relative overflow-hidden py-20 px-4 md:px-6">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="flex justify-center">
-                <div className="bg-purple-100 flex items-center justify-center text-purple-600 hover:bg-purple-100 px-4 py-2 text-sm font-medium rounded-full w-max h-max">
+                <div className="bg-gradient-to-r from-pink-500 to-pink-700 flex items-center justify-center text-white px-4 py-2 text-sm font-medium rounded-full w-max h-max">
                   <LuCamera className="w-4 h-4 mr-2" />
                   <h1>Creative Showcase</h1>
                 </div>
@@ -42,7 +42,7 @@ const GalleryPage = ({ searchParams }: GalleryPageProps) => {
           <FilterButton />
         </div>
       </section>
-      <section className="py-16 px-4 md:px-6">
+      <section className="py-16 px-4 md:px-6 bg-gradient-to-br from-blue-50 via-blue-100 to-emerald-100">
         <div className="container mx-auto max-w-7xl">
           <GalleryCard filter={activeCategory} />
         </div>

@@ -32,7 +32,7 @@ const ProductCard = ({ items }: ProductCardMap) => {
       </div>
 
       <div className="w-full flex-1 flex items-center justify-center bg-stone-50 group-hover:bg-purple-50 transition-colors duration-300 px-2">
-        <h1 className="font-medium text-sm md:text-base text-center text-zinc-700 group-hover:text-purple-600 transition-colors duration-300">
+        <h1 className="font-semibold text-sm md:text-base text-center text-zinc-700 group-hover:text-purple-600 transition-colors duration-300">
           {items.title.replace(/-/g, " ")}
         </h1>
       </div>

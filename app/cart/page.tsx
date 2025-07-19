@@ -173,7 +173,7 @@ const CartPage = () => {
             height={100}
           />
         </div>
-        <p className="text-lg md:text-2xl text-amber-400">
+        <p className="text-lg md:text-2xl text-pink-600">
           Thank You For Trusting Us{" "}
         </p>
       </section>

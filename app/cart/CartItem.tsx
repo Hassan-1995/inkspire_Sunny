@@ -13,6 +13,7 @@ import EmptyCart from "./EmptyCart";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Header from "../components/Header";
 
 const CartItem = () => {
   const dispatch = useDispatch();
@@ -46,27 +47,28 @@ const CartItem = () => {
         router.push("/deliveryInformation");
         return;
       }
+      router.push(`/check-out?amount=${getTotalPrice()}`);
 
-      try {
-        const res = await fetch("/api/checkout", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: getTotalPrice() }),
-        });
+      // try {
+      //   const res = await fetch("/api/checkout", {
+      //     method: "POST",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify({ amount: getTotalPrice() }),
+      //   });
 
-        if (!res.ok) {
-          const error = await res.json();
-          console.error("Stripe Error:", error);
-          alert(`Error: ${error.error}`);
-          return;
-        }
+      //   if (!res.ok) {
+      //     const error = await res.json();
+      //     console.error("Stripe Error:", error);
+      //     alert(`Error: ${error.error}`);
+      //     return;
+      //   }
 
-        const data = await res.json();
-        window.location.href = data.url;
-      } catch (err) {
-        console.error("Unexpected error:", err);
-        alert("Something went wrong");
-      }
+      //   const data = await res.json();
+      //   window.location.href = data.url;
+      // } catch (err) {
+      //   console.error("Unexpected error:", err);
+      //   alert("Something went wrong");
+      // }
     } finally {
       setLoading(false);
     }
@@ -94,9 +96,9 @@ const CartItem = () => {
         <EmptyCart />
       ) : (
         <>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-purple-800 tracking-wide mb-4 text-center">
-            Your Cart
-          </h1>
+          <div className="mb-10">
+            <Header title="Your Cart" />
+          </div>
           {cartItems.map((item) => (
             <div
               key={item.productID}
@@ -214,7 +216,8 @@ const CartItem = () => {
           <button
             onClick={() => handleCheckOut()}
             disabled={loading}
-            className="my-2 cursor-pointer flex w-full items-center justify-center text-white font-semibold bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
+            // className="my-2 cursor-pointer flex w-full items-center justify-center text-white font-semibold bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
+            className="flex w-full text-xl my-3 items-center justify-center py-3 px-6 rounded-lg font-semibold transition transform hover:scale-105 active:scale-95 shadow-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white"
           >
             {loading ? "Please Wait" : "Proceed to Checkout"}
           </button>

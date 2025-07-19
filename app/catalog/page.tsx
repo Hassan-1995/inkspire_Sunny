@@ -139,15 +139,17 @@ const CatalogPage = () => {
     },
   ];
   return (
-    <div className="max-w-6xl mx-auto py-6 px-4 md:px-8 lg:px-12">
-      <Header title="Explore Our Collection" />
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-orange-50 to-emerald-50">
+      <div className="max-w-6xl mx-auto py-6 px-4 md:px-8 lg:px-12">
+        <Header title="Explore Our Collection" />
 
-      <Section title="Apparels" items={apparels} />
-      <Section title="Drinkwares" items={drinkwares} />
-      <Section title="Bags & Accessories" items={bags} />
-      <Section title="Home & Living" items={homes} />
+        <Section title="Apparels" items={apparels} />
+        <Section title="Drinkwares" items={drinkwares} />
+        <Section title="Bags & Accessories" items={bags} />
+        <Section title="Home & Living" items={homes} />
 
-      <CustomProductSection />
+        <CustomProductSection />
+      </div>
     </div>
   );
 };
@@ -165,7 +167,7 @@ type SectionProps = {
 
 const Section = ({ title, items }: SectionProps) => (
   <section className="mb-10">
-    <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-zinc-800 pb-1 mb-4">
+    <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-pink-800 pb-1 mb-4">
       {title}
     </h2>
     <ul className="flex justify-around gap-4 overflow-x-auto whitespace-nowrap no-scrollbar">
