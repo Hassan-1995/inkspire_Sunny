@@ -3,17 +3,23 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   RiMenuFold3Line,
   RiMenuUnfold3Line,
   RiShoppingBag4Line,
 } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
+import { PiShoppingCartSimpleDuotone } from "react-icons/pi";
 
 const NavBar = () => {
   const { status, data: session } = useSession();
   const [modal, setModal] = useState(false);
   const [signOut, setSignOut] = useState(false);
+
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartHasItems = cartItems.length > 0;
 
   const pathName = usePathname();
   const mainLinks = [
@@ -22,10 +28,6 @@ const NavBar = () => {
     { label: "Gallery", href: "/gallery" },
     { label: "About", href: "/about" },
   ];
-
-  useEffect(() => {
-    setModal(false);
-  }, [pathName]);
 
   return (
     <nav
@@ -99,9 +101,15 @@ const NavBar = () => {
 
           <Link
             href={"/cart"}
-            className="hidden md:flex text-purple-700 font-semibold rounded-lg hover:bg-text-800 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
+            className="hidden md:flex font-semibold rounded-lg hover:bg-text-800 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
           >
-            <RiShoppingBag4Line className="text-2xl" />
+            <div className="relative">
+              <PiShoppingCartSimpleDuotone className="text-3xl text-purple-700" />
+              {cartHasItems && (
+                <div className="absolute top-0 right-0 bg-red-600 w-3 h-3 rounded-full border border-white" />
+              )}
+            </div>
+            {/* <RiShoppingBag4Line className="text-2xl" /> */}
           </Link>
 
           <button

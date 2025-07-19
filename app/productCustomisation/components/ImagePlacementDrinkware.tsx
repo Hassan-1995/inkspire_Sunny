@@ -53,7 +53,7 @@ const ImagePlacementDrinkware = ({
 
   return (
     <>
-      <div className="w-full aspect-[7/4]">
+      <div className="w-full aspect-[7/4] bg-white">
         <DrinkwareWithImage
           productImage={productFrontPath!}
           uploadedImage={uploadedImagePrimary}

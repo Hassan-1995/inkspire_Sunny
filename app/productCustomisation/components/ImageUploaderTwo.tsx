@@ -28,7 +28,7 @@ const ImageUploaderTwo = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="flex flex-col gap-2">
-        <div className="aspect-[6/7] w-full">
+        <div className="aspect-[6/7] w-full bg-pink-700/20 hover:bg-purple-900/20 sm:mx-2 md:mx-0">
           <SingleImageUploader
             localStorageKey={frontKey}
             onUpload={(url) => dispatch(setPrimaryImage(url))}
@@ -44,7 +44,7 @@ const ImageUploaderTwo = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <div className="aspect-[6/7] w-full">
+        <div className="aspect-[6/7] w-full bg-pink-800/20 hover:bg-purple-900/20">
           <SingleImageUploader
             localStorageKey={backKey}
             onUpload={(url) => dispatch(setSecondaryImage(url))}

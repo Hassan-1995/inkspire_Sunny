@@ -30,9 +30,6 @@ const ProgressBar = () => {
     },
   ];
 
-  
-
-
   const handleProgress = (progressID: number) => {
     dispatch(setProgressBarValue(progressID));
   };
@@ -67,9 +64,9 @@ const ProgressBar = () => {
           </button>
         ))}
       </div>
-      <div className="w-full md:4/5 lg:w-2/3 bg-gray-100 py-0.5">
+      <div className="w-full md:4/5 lg:w-2/3 bg-pink-800/20 py-0.5">
         <div
-          className={`rounded-full bg-purple-400 h-2 transition-all duration-500
+          className={`rounded-full bg-purple-800 h-2 transition-all duration-500
             ${progress <= 1 && "w-0"} 
             ${progress === 2 && "w-1/3"} 
             ${progress === 3 && "w-2/3"}`}

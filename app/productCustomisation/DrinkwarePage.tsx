@@ -16,8 +16,8 @@ const DrinkwarePage = ({ catalog, catalogItem }: DrinkwarePageProps) => {
   );
   return (
     <div className="w-full md:4/5 lg:w-2/3 my-10">
-      <h1>{catalog}</h1>
-      <h1>{catalogItem}</h1>
+      {/* <h1>{catalog}</h1>
+      <h1>{catalogItem}</h1> */}
       {progress === 1 && <ImageUploaderOne />}
       {progress === 2 && <ImagePlacementDrinkware catalogItem={catalogItem} />}
       {progress === 3 && (

@@ -33,10 +33,10 @@ const ProductCustomisation = async (props: ProductCustomisationProps) => {
   }
 
   return (
-    <div className="flex flex-col pt-20 lg:p-10 justify-center items-center">
-      ProductCustomisation page
+    <div className="flex flex-col pt-20 lg:p-10 justify-center items-center bg-gradient-to-br from-indigo-50 via-orange-50 to-emerald-50">
+      {/* ProductCustomisation page
       <h1>Catalog: {catalog}</h1>
-      <h1>Catalog Item: {catalogItem}</h1>
+      <h1>Catalog Item: {catalogItem}</h1> */}
       <ProgressBar />
       <CustomComponent catalog={catalog} catalogItem={catalogItem} />
     </div>

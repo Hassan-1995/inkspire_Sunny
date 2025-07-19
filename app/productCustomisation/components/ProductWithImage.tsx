@@ -15,7 +15,7 @@ const ProductWithImage = ({
   overlayUploadedOnProduct = true, // for default behaviour
 }: ProductWithImageProps) => {
   return (
-    <div className="relative w-full h-full border-2 border-dashed border-gray-400 rounded-md p-4 flex justify-center items-center">
+    <div className="relative w-full h-full border-2 border-dashed rounded-md p-4 flex justify-center items-center">
       {/* base layer */}
       {overlayUploadedOnProduct
         ? productImage && (
@@ -29,7 +29,7 @@ const ProductWithImage = ({
           )
         : uploadedImage && (
             <div
-              className={`absolute border-2 border-dashed ${sizeClass} ${
+              className={`absolute border-2 border-dashed border-pink-700 ${sizeClass} ${
                 uploadedImagePosition || ""
               }`}
               style={{
@@ -50,7 +50,7 @@ const ProductWithImage = ({
       {overlayUploadedOnProduct
         ? uploadedImage && (
             <div
-              className={`absolute border-2 border-dashed ${sizeClass} ${
+              className={`absolute border-2 border-dashed border-white ${sizeClass} ${
                 uploadedImagePosition || ""
               }`}
               style={{

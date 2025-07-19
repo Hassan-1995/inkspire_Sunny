@@ -69,7 +69,7 @@ const ImageFinalisation = ({
     <>
       <div className="flex flex-col md:flex-row w-full aspect-[7/4] border-2 border-dashed border-gray-400 rounded-md p-2 gap-2">
         {/* Left Preview Section */}
-        <div className="w-full md:w-2/5 h-auto md:h-full bg-amber-100 rounded-md p-2 space-y-2">
+        <div className="w-full md:w-2/5 h-auto md:h-full bg-pink-200 rounded-md p-2 space-y-2">
           <h1 className="text-center text-sm font-semibold">Product Preview</h1>
           <div className="grid grid-cols-2 gap-2">
             {[

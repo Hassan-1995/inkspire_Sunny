@@ -272,7 +272,7 @@ const ImagePlacementTwo = ({
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="w-full aspect-[7/8] md:aspect-[7/8]">
+        <div className="w-full aspect-[7/8] md:aspect-[7/8] bg-white">
           <ProductWithImage
             productImage={productFrontPath!}
             uploadedImage={uploadedImagePrimary}
@@ -285,7 +285,7 @@ const ImagePlacementTwo = ({
           />
         </div>
 
-        <div className="w-full aspect-[7/8] md:aspect-[7/8]">
+        <div className="w-full aspect-[7/8] md:aspect-[7/8] bg-white">
           <ProductWithImage
             productImage={productBackPath!}
             uploadedImage={uploadedImageSecondary}
