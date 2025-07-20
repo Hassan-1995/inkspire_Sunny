@@ -4,14 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { PiPackageDuotone, PiShoppingCartSimpleDuotone } from "react-icons/pi";
 import {
   RiMenuFold3Line,
-  RiMenuUnfold3Line,
-  RiShoppingBag4Line,
+  RiMenuUnfold3Line
 } from "react-icons/ri";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/store";
-import { PiShoppingCartSimpleDuotone } from "react-icons/pi";
 
 const NavBar = () => {
   const { status, data: session } = useSession();
@@ -20,6 +19,8 @@ const NavBar = () => {
 
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const cartHasItems = cartItems.length > 0;
+  const orderItems = useSelector((state: RootState) => state.cart.items);
+  const orderHasItems = orderItems.length > 0;
 
   const pathName = usePathname();
   const mainLinks = [
@@ -79,7 +80,7 @@ const NavBar = () => {
           {status === "unauthenticated" && (
             <Link
               href={"/api/auth/localAuth"}
-              className="hidden md:flex w-full py-1 px-2.5 md:py-2 md:px-3.5 rounded-lg font-bold transition transform hover:scale-105 active:scale-95 shadow-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+              className="hidden md:flex w-full py-1 px-2.5 md:py-2 md:px-3.5 rounded-lg font-bold transition transform hover:scale-105 active:scale-95 shadow-xl text-pink-800"
             >
               Sign In
             </Link>
@@ -98,18 +99,29 @@ const NavBar = () => {
               />
             </button>
           )}
-
-          <Link
-            href={"/cart"}
-            className="hidden md:flex font-semibold rounded-lg hover:bg-text-800 transition-colors py-1 px-2.5 md:py-2 md:px-3.5"
-          >
+          {/* orders */}
+          <Link href={"/order"} className="hidden md:flex font-semibold">
             <div className="relative">
-              <PiShoppingCartSimpleDuotone className="text-3xl text-purple-700" />
+              <p className="flex flex-col items-end text-pink-600 text-xs ">
+                <PiPackageDuotone className="text-3xl text-purple-700 transition transform hover:scale-110" />
+                Orders
+              </p>
+              {orderHasItems && (
+                <div className="absolute top-0 right-0 bg-red-600 w-3 h-3 rounded-full border border-white" />
+              )}
+            </div>
+          </Link>
+          {/* cart */}
+          <Link href={"/cart"} className="hidden md:flex font-semibold">
+            <div className="relative">
+              <p className="flex flex-col items-end text-pink-600 text-xs ">
+                <PiShoppingCartSimpleDuotone className="text-3xl text-purple-700 transition transform hover:scale-110" />
+                Cart
+              </p>
               {cartHasItems && (
                 <div className="absolute top-0 right-0 bg-red-600 w-3 h-3 rounded-full border border-white" />
               )}
             </div>
-            {/* <RiShoppingBag4Line className="text-2xl" /> */}
           </Link>
 
           <button
@@ -147,7 +159,7 @@ const NavBar = () => {
             </li>
           ))}
         </ul>
-        <div className="flex items-center justify-between px-2">
+        <div className="flex items-center justify-between px-2 gap-2">
           {/* Sign In Button */}
           {status === "unauthenticated" && (
             <Link
@@ -169,12 +181,34 @@ const NavBar = () => {
           {/* Spacer */}
           <div className="w-3"></div>
 
+          {/* Order Icon Button */}
+          <Link
+            href="/cart"
+            className="flex items-center justify-center text-purple-700 font-semibold border border-purple-300 rounded-lg py-2 px-4 hover:bg-purple-100 transition"
+          >
+            <div className="relative">
+              <p className="flex flex-col items-end text-pink-600 text-xs ">
+                <PiPackageDuotone className="text-2xl text-purple-700 transition transform hover:scale-110" />
+              </p>
+              {orderHasItems && (
+                <div className="absolute top-0 right-0 bg-red-600 w-2 h-2 rounded-full border border-white" />
+              )}
+            </div>
+          </Link>
           {/* Cart Icon Button */}
           <Link
             href="/cart"
             className="flex items-center justify-center text-purple-700 font-semibold border border-purple-300 rounded-lg py-2 px-4 hover:bg-purple-100 transition"
           >
-            <RiShoppingBag4Line className="text-2xl" />
+            {/* <RiShoppingBag4Line className="text-2xl" /> */}
+            <div className="relative">
+              <p className="flex flex-col items-end text-pink-600 text-xs ">
+                <PiShoppingCartSimpleDuotone className="text-2xl text-purple-700 transition transform hover:scale-110" />
+              </p>
+              {cartHasItems && (
+                <div className="absolute top-0 right-0 bg-red-600 w-2 h-2 rounded-full border border-white" />
+              )}
+            </div>
           </Link>
         </div>
       </div>

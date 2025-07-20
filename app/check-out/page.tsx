@@ -64,7 +64,7 @@ const CheckoutPage = ({ searchParams }: CheckoutPageProps) => {
       </div>
 
       {/* Checkout Card */}
-      <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 space-y-8 transition-transform transform hover:scale-[1.02]">
+      <div className="bg-white rounded-xl shadow-2xl shadow-pink-950 max-w-md w-full p-8 space-y-8 transition-transform transform hover:scale-[1.02]">
         <h2 className="text-2xl font-bold text-center text-gray-800">
           Checkout
         </h2>
@@ -72,8 +72,11 @@ const CheckoutPage = ({ searchParams }: CheckoutPageProps) => {
         {/* Total Amount */}
         <div className="text-center">
           <p className="text-gray-500">You are about to pay</p>
-          <p className="text-4xl font-extrabold text-purple-700 mt-2">
-            Rs {totalAmount.toLocaleString()}
+          <p className="text-4xl text-purple-800 mt-2">
+            Rs{" "}
+            <span className="font-extrabold">
+              {totalAmount.toLocaleString()}
+            </span>
           </p>
         </div>
 
@@ -85,7 +88,7 @@ const CheckoutPage = ({ searchParams }: CheckoutPageProps) => {
           <div className="flex justify-center space-x-4">
             <button
               onClick={() => setPaymentMethod("Card")}
-              className={`px-5 py-3 rounded-full font-semibold transition shadow ${
+              className={`cursor-pointer px-5 py-2 rounded-lg font-semibold transition shadow ${
                 paymentMethod === "Card"
                   ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
                   : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
@@ -95,7 +98,7 @@ const CheckoutPage = ({ searchParams }: CheckoutPageProps) => {
             </button>
             <button
               onClick={() => setPaymentMethod("COD")}
-              className={`px-5 py-3 rounded-full font-semibold transition shadow ${
+              className={`cursor-pointer px-5 py-2 rounded-lg font-semibold transition shadow ${
                 paymentMethod === "COD"
                   ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
                   : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50"
@@ -109,7 +112,7 @@ const CheckoutPage = ({ searchParams }: CheckoutPageProps) => {
         {/* Confirm Button */}
         <button
           onClick={() => handleConfirm(paymentMethod)}
-          className={`w-full py-4 rounded-full font-bold transition transform hover:scale-105 active:scale-95 shadow-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white`}
+          className={`w-full cursor-pointer flex items-center justify-center py-3 px-6 rounded-lg font-semibold transition-transform duration-200 ease-out bg-white border border-pink-600 text-pink-700 shadow-md hover:scale-105 hover:bg-pink-600 hover:text-white hover:border-pink-700 hover:shadow-xl active:scale-95 active:bg-purple-800 active:text-white`}
         >
           Confirm Order
         </button>

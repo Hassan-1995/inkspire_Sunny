@@ -58,6 +58,27 @@ const OrderItem = () => {
                       />
                     </div>
                   )}
+                  {item.productBackPath && (
+                    <div className="relative w-full aspect-square">
+                      <Image
+                        src={item.productBackPath}
+                        alt="Back View"
+                        fill
+                        className="object-contain rounded border border-zinc-300 shadow-sm"
+                      />
+                    </div>
+                  )}
+                  {/* Back Design (conditional) */}
+                  {item.uploadedImageSecondary && (
+                    <div className="relative w-full aspect-square flex justify-center items-center">
+                      <Image
+                        src={item.uploadedImageSecondary}
+                        alt="Back Design"
+                        fill
+                        className="object-contain rounded border border-zinc-300 shadow-sm"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
 

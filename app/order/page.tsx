@@ -18,7 +18,7 @@ const UserOrderPage = () => {
           />
         </div>
         <p className="text-lg md:text-2xl text-pink-600">
-          Thank You For Trusting Us{" "}
+          Thanks for shopping with us!{" "}
         </p>
       </section>
       <OrderItem />
